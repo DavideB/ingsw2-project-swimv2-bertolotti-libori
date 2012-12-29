@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="persistencetier">
+		<jta-data-source>java:/MySqlPersistence</jta-data-source>
+		<class>it.polimi.swim2.persistence.Admin</class>
+		<class>it.polimi.swim2.persistence.Friendshiprequest</class>
+		<class>it.polimi.swim2.persistence.Helprequest</class>
+		<class>it.polimi.swim2.persistence.Newabilityrequest</class>
+		<class>it.polimi.swim2.persistence.Registered</class>
+		<class>it.polimi.swim2.persistence.RegisteredSkill</class>
+		<class>it.polimi.swim2.persistence.RegisteredSkillPK</class>
+		<class>it.polimi.swim2.persistence.Satisfiedhelprequest</class>
+		<class>it.polimi.swim2.persistence.Skill</class>
+		<class>it.polimi.swim2.persistence.User</class>
+		<properties>
+           <property name="hibernate.hbm2ddl.auto" value="update"/><!--"create-drop"-->
+        </properties>
+	</persistence-unit>
+</persistence>
