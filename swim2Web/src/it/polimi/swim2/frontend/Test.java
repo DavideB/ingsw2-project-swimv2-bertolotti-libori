@@ -5,6 +5,9 @@ import it.polimi.swim2.persistence.User;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -54,6 +57,14 @@ public class Test extends HttpServlet {
 	    writer.write("\nDelete some data...");
 	    statelessBean.deleteSomeData();    
 	    writer.write("done\n\n");
+	    displayPeople(resp);
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    try {
+			statelessBean.createUser("Emanuele", "Libori", "emanuele.libori@gmail.com", "qwerty", sdf.parse("20/07/1990"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	    displayPeople(resp);
 	  }
 	  

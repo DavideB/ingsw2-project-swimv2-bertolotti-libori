@@ -11,6 +11,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Stateless(name="UserManager")
@@ -20,11 +22,36 @@ public class UserManager implements StatelessEJB {
   
   public List<User> getAllUsers() {
     ArrayList<User> toReturn = new ArrayList<User>();
-    Query q = em.createNamedQuery("findAll"); 
+    Query q = em.createNamedQuery("findAllUser"); 
     for (Object po : q.getResultList()) {
       toReturn.add((User) po);
     }
     return toReturn;
+  }
+  
+  public List<Registered> getAllRegistered() {
+	    ArrayList<Registered> toReturn = new ArrayList<Registered>();
+	    Query q = em.createNamedQuery("findAllRegistered"); 
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Registered) po);
+	    }
+	    return toReturn;
+	  }
+  
+  @Override
+  @TransactionAttribute
+  public void createUser(String firstName, String lastName, String email, String password, Date birthDate) {
+	  User user = new User();
+	  user.setEmail(email);
+	  user.setPassword(password);
+	  //aggiungo la riga alla tabella per ottenere un id valido
+	  em.persist(user);
+	  Registered reg = new Registered();
+	  reg.setName(firstName);
+	  reg.setSurname(lastName);
+	  reg.setBirthdate(birthDate);
+	  reg.setUser_id(user.getId());
+	  em.persist(reg);
   }
   
   
@@ -37,14 +64,18 @@ public class UserManager implements StatelessEJB {
     user.setEmail("blair@polimi.it");
     em.persist(user);
     Registered registered = new Registered();
-    registered.setId(user.getId());
+    registered.setUser_id(user.getId());
     registered.setName("Tony");
     registered.setSurname("Blair");
-   
-    em.persist(user);  
- 
-    em.refresh(user);
-   
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    try {
+		registered.setBirthdate(sdf.parse("05/11/1966"));
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    em.persist(registered);  
+    
   }
   
   public void deleteSomeData() {
