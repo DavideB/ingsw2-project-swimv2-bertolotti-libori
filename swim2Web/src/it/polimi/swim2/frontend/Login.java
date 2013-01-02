@@ -69,6 +69,7 @@ public class Login extends HttpServlet {
 		if ((a = statelessBean.loginAdmin(username, password))!=null) {
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("data", r);
+			request.setAttribute("test", statelessBean.getAllUsers());
 			request.getRequestDispatcher("WEB-INF/admin/home.jsp").forward(request, response);
 			return;
 		}
