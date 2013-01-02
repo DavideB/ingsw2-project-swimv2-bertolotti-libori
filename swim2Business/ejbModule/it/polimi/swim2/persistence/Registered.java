@@ -3,6 +3,7 @@ package it.polimi.swim2.persistence;
 import java.io.Serializable;
 import javax.persistence.*;
 
+
 import java.util.Date;
 
 
@@ -12,7 +13,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name="REGISTERED")
-@NamedQuery(name="findAllRegistered", query="SELECT r FROM Registered r ")
+@NamedQueries( {
+@NamedQuery(name="Registered.findAll", query="SELECT r FROM Registered r "),
+@NamedQuery(name="Registered.getUser", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email and u.password= :password" )
+ })
 public class Registered implements Serializable {
 	private static final long serialVersionUID = 1L;
 

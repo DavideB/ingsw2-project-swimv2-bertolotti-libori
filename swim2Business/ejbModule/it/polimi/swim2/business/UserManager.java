@@ -2,6 +2,7 @@ package it.polimi.swim2.business;
 
 
 import it.polimi.swim2.interfaces.StatelessEJB;
+import it.polimi.swim2.persistence.Admin;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.User;
 
@@ -36,7 +37,31 @@ public class UserManager implements StatelessEJB {
 	      toReturn.add((Registered) po);
 	    }
 	    return toReturn;
-	  }
+  }
+  
+  @Override
+  public Registered loginReg(String username, String password) {
+	  Query q = em.createNamedQuery("Registered.getUser"); 
+	  q.setParameter("email", username);
+	  q.setParameter("password", password);
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty()) { 
+	     return (Registered) toReturn.get(0);
+      }
+	  return null;
+  }
+  
+  @Override
+  public Admin loginAdmin(String username, String password) {
+	    Query q = em.createNamedQuery("Admin.getUser"); 
+	    q.setParameter("email", username);
+		q.setParameter("password", password);
+	    List toReturn = q.getResultList();  
+	      if (toReturn != null && !toReturn.isEmpty()) { 
+		     return (Admin) toReturn.get(0);
+	      }
+		  return null;
+}
   
   @Override
   @TransactionAttribute

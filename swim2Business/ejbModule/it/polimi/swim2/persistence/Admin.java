@@ -2,6 +2,7 @@ package it.polimi.swim2.persistence;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="ADMIN")
+@NamedQuery(name="Admin.getUser", query="Select a from User u, Admin a where u.id = a.user_id and u.email=:email and u.password=:password" )
 public class Admin implements Serializable {
 	private static final long serialVersionUID = 1L;
 
