@@ -17,4 +17,5 @@ public interface StatelessEJB {
 	public void createUser(String firstName, String lastName, String email, String password, Date birthDate);
 	public Registered loginReg(String username, String password);
 	public Admin loginAdmin(String username, String password);
+	public Registered getUserData(String userName);
 }

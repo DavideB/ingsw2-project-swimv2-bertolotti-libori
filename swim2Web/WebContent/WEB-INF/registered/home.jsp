@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>HomePage di <%= session.getAttribute("username") %></title>
 </head>
 <body>
-	Benvenuto <%= session.getAttribute("username") %>
+	<div id="header">
+		<%@ include file="header.jsp" %>
+	</div>
+	
+	<div id="main">
+		Benvenuto <%= session.getAttribute("username") %>
+	</div>
 </body>
 </html>

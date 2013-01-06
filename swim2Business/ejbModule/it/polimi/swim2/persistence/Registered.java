@@ -15,8 +15,10 @@ import java.util.Date;
 @Table(name="REGISTERED")
 @NamedQueries( {
 @NamedQuery(name="Registered.findAll", query="SELECT r FROM Registered r "),
-@NamedQuery(name="Registered.getUser", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email and u.password= :password" )
- })
+@NamedQuery(name="Registered.getUser", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email and u.password= :password" ),
+@NamedQuery(name="Registered.getUserData", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email" )
+
+})
 public class Registered implements Serializable {
 	private static final long serialVersionUID = 1L;
 

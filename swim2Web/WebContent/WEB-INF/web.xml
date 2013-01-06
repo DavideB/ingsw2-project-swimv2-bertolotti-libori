@@ -23,4 +23,24 @@
     <servlet-name>Login</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageUserData</display-name>
+    <servlet-name>ManageUserData</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageUserData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageUserData</servlet-name>
+    <url-pattern>/ManageUserData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UploadImage</display-name>
+    <servlet-name>UploadImage</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.UploadImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadImage</servlet-name>
+    <url-pattern>/UploadImage</url-pattern>
+  </servlet-mapping>
 </web-app>
