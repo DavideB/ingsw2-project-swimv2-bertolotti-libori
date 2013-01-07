@@ -213,6 +213,17 @@ public class UserManager implements StatelessEJB {
   public void deleteSomeData() {
      
 
-    }   
+    }
+
+@Override
+public Registered getUserData(String username) {
+	Query q = em.createNamedQuery("Registered.getUserData"); 
+	q.setParameter("email", username);
+	List toReturn = q.getResultList();  
+    if (toReturn != null && !toReturn.isEmpty()) { 
+	   return (Registered) toReturn.get(0);
+    }
+	return null;
+}   
     
 }
