@@ -1,5 +1,6 @@
 package it.polimi.swim2.interfaces;
 
+import it.polimi.swim2.other.RegisteredJoinUser;
 import it.polimi.swim2.persistence.Admin;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.User;
@@ -17,4 +18,12 @@ public interface StatelessEJB {
 	public void createUser(String firstName, String lastName, String email, String password, Date birthDate);
 	public Registered loginReg(String username, String password);
 	public Admin loginAdmin(String username, String password);
+	public boolean verifyOrCreateUser(String email);
+	public boolean registerUser(String firstName, String lastName, String email, String password, Date birthDate);
+	public List<Registered> getAllRegistered();
+	public List<RegisteredJoinUser> getAllRegisteredJoinUser();
+	public User getUser(int id);
+	public List<Admin> getAllAdmin();
+	public Admin getAdmin(int user_id);
+	public Admin getAdmin(User user);
 }

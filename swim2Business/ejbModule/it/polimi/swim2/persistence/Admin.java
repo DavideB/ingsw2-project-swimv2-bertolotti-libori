@@ -12,7 +12,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name="ADMIN")
-@NamedQuery(name="Admin.getUser", query="Select a from User u, Admin a where u.id = a.user_id and u.email=:email and u.password=:password" )
+@NamedQueries( {
+	@NamedQuery(name="Admin.getUser", 
+			query="Select a from User u, Admin a where u.id = a.user_id and u.email=:email and u.password=:password" ),
+	@NamedQuery(name="Admin.findAll", 
+			query="SELECT a FROM Admin a "),
+	@NamedQuery(name="Admin.findAllAdminJoinUser",
+			query="SELECT NEW it.polimi.swim2.other.AdminJoinUser(u, a) from User u, Admin a where u.id = a.user_id"),
+	@NamedQuery(name="Admin.findAdmin",
+			query="SELECT a FROM Admin a where a.user_id = :user_id"),
+ })
+
 public class Admin implements Serializable {
 	private static final long serialVersionUID = 1L;
 
