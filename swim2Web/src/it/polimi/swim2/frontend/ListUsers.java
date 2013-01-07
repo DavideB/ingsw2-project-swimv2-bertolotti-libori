@@ -33,8 +33,7 @@ public class ListUsers extends HttpServlet {
 	private StatelessEJB statelessBean;
 	 
 	private String out = new String();
-	String newline = System.getProperty("line.separator");
-	
+		
 	  @Override
 	public void init() throws ServletException {
 	    try {
