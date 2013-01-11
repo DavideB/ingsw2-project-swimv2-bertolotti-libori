@@ -43,4 +43,14 @@
     <servlet-name>UploadImage</servlet-name>
     <url-pattern>/UploadImage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageFriendship</display-name>
+    <servlet-name>ManageFriendship</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageFriendship</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageFriendship</servlet-name>
+    <url-pattern>/ManageFriendship</url-pattern>
+  </servlet-mapping>
 </web-app>

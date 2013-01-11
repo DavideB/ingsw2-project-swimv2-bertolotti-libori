@@ -2,6 +2,7 @@ package it.polimi.swim2.persistence;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +12,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name="FRIENDSHIPREQUEST")
+@NamedQueries( {
+	@NamedQuery(name="Friendshiprequest.getRespondents", query="Select r from Friendshiprequest f, Registered r where r.id = f.ans_id and f.sent_id = :id" ),
+	@NamedQuery(name="Friendshiprequest.getAskers", query="Select r from Friendshiprequest f, Registered r where :id = f.ans_id and f.sent_id = r.id" )
+	//,@NamedQuery(name="Friendshiprequest.accept", query="update Friendshiprequest set ")
+})
 public class Friendshiprequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 

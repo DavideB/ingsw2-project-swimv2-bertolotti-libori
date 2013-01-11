@@ -54,12 +54,18 @@ function checkPwd(theForm) {
 			
 			<div id="main">
 				    <div class="row">
-		   				<div class="span12"> <display:table name="userData" /> </div>
+		   				<div class="span12">
+		   					<display:table name="userData" >
+		   						<display:column property="name" />
+		   						<display:column property="surname" />
+		   						<display:column property="birthdate"/>
+		   					</display:table>
+		   				</div>
 		    		</div>
 				
 				<div class="row-fluid">
 					<div class="span8">
-						<form name="modUserData" a<form name="modUserData" action="ModifyUserData" method="post" onsubmit="return checkPwd(this);">
+						<form name="modUserData" action="ModifyUserData" method="post" onsubmit="return checkPwd(this);">
 							<div class="row">
 								<div class="span4">Vecchia Password</div>
 								<div class="span8"><input name="oldPwd" type="password"></div>
@@ -82,33 +88,19 @@ function checkPwd(theForm) {
 						<form action="UploadImage" method="post">
 							Scegli un'immagine per il profilo<input name="newImage" type="file">
 							<input type="submit" value="Conferma">
-						</form>ction="ModifyUserData" method="post" onsubmit="return checkPwd(this);">
-							<div class="row">
-								<div class="span4">Vecchia Password</div>
-								<div class="span8"><input name="oldPwd" type="password"></div>
-							</div>
-							<div class="row">
-								<div class="span4">Conferma vecchia Password</div>
-								<div class="span8"><input name="confirmOldPwd" type="password"></div>
-							</div>
-							<div class="row">
-								<div class="span4">Nuova Password</div>
-								<div class="span8"><input name="newPwd" type="password"></div>
-							</div>
-							<div class="row">
-								<div class="span4">Conferma nuova Password</div>
-								<div class="span8"><input name="confirmNewPwd" type="password"></div>
-							</div>
+						
 							<div class="span12"><input type="submit" value="Conferma"></div>	
 						</form>
 						
-						<form action="UploadImage" method="post">
-							Scegli un'immagine per il profilo<input name="newImage" type="file">
-							<input type="submit" value="Conferma">
-						</form>
 					</div>
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
+						<% 
+							String imgUrl = ((ArrayList<Registered>)request.getAttribute("userData")).get(0).getImageUrl();
+							if (imgUrl!=null) 
+						%>
+							<img alt="Immagine del Profilo" src="img/users/<%=imgUrl%>">
+						<%; %>
 					</div>
 				</div>
 			</div>
