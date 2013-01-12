@@ -1,10 +1,7 @@
 package it.polimi.swim2.interfaces;
 
-import it.polimi.swim2.persistence.Admin;
-import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.User;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;

@@ -9,6 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQuery(name="RegisteredSkill.findUserSkills",query="SELECT s FROM Skill s, RegisteredSkill r where r.id.skillId = s.id and r.id.id = :id")
 public class RegisteredSkill implements Serializable {
 	private static final long serialVersionUID = 1L;
 

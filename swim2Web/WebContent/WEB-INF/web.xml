@@ -53,4 +53,14 @@
     <servlet-name>ManageFriendship</servlet-name>
     <url-pattern>/ManageFriendship</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageSkills</display-name>
+    <servlet-name>ManageSkills</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageSkills</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageSkills</servlet-name>
+    <url-pattern>/ManageSkills</url-pattern>
+  </servlet-mapping>
 </web-app>

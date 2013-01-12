@@ -9,7 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script type="text/javascript" language="JavaScript">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
@@ -23,12 +24,18 @@
 			<div id="main">
 				    <div class="row">
 		   				<div class="span8">
-		   					<display:table name="friends">
+		   					<display:table name="availableSkills">
 		   					</display:table>
 		   				</div>
 		    		</div>
-				
-					</div>
+		    		<div class="row-fluid">
+					<div class="span8">
+						<form name="modUserData" action="SendNewAbilityRequest" method="post" onsubmit="return checkPwd(this);">
+							<div class="row">
+								<div class="span4">Inserisci il nome della nuova abilità e una breve descrizione dei motivi che ti spingono a richiederla. La richiesta sarà vagliata dall'ammistratore di sistema appena possibile.</div>
+								<div class="span8"><input name="message" type="text"></div>
+							</div>
+						</form>
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
 						<% 

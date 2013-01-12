@@ -2,6 +2,7 @@ package it.polimi.swim2.persistence;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="SKILL")
+@NamedQuery(name="Skill.findAll",query="SELECT s FROM Skill s ")
 public class Skill implements Serializable {
 	private static final long serialVersionUID = 1L;
 

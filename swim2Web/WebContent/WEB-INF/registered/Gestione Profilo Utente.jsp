@@ -96,7 +96,7 @@ function checkPwd(theForm) {
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
 						<% 
-							String imgUrl = ((ArrayList<Registered>)request.getAttribute("userData")).get(0).getImageUrl();
+							String imgUrl = ((ArrayList<Registered>)session.getAttribute("userData")).get(0).getImageUrl();
 							if (imgUrl!=null) 
 						%>
 							<img alt="Immagine del Profilo" src="img/users/<%=imgUrl%>">
