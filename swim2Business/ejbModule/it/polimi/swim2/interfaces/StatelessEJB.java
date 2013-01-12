@@ -18,4 +18,11 @@ public interface StatelessEJB {
 	public Registered loginReg(String username, String password);
 	public Admin loginAdmin(String username, String password);
 	public Registered getUserData(String userName);
+	public boolean verifyOrCreateUser(String email);
+	public boolean registerUser(String firstName, String lastName, String email, String password, Date birthDate);
+	public List<Registered> getAllRegistered();
+	public User getUser(int id);
+	public List<Admin> getAllAdmin();
+	public Admin getAdmin(int user_id);
+	public Admin getAdmin(User user);
 }

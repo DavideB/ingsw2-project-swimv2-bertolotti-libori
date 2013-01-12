@@ -23,11 +23,20 @@ public class UserManager implements StatelessEJB {
   
   public List<User> getAllUsers() {
     ArrayList<User> toReturn = new ArrayList<User>();
-    Query q = em.createNamedQuery("findAllUser"); 
+    Query q = em.createNamedQuery("User.findAll"); 
     for (Object po : q.getResultList()) {
       toReturn.add((User) po);
     }
     return toReturn;
+  }
+  
+  public List<Admin> getAllAdmin() {
+	    ArrayList<Admin> toReturn = new ArrayList<Admin>();
+	    Query q = em.createNamedQuery("Admin.findAll"); 
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Admin) po);
+	    }
+	    return toReturn;
   }
   
   public List<Registered> getAllRegistered() {
@@ -79,6 +88,92 @@ public class UserManager implements StatelessEJB {
 	  em.persist(reg);
   }
   
+  @Override
+  @TransactionAttribute
+  public boolean registerUser(String firstName, String lastName, String email, String password, Date birthDate) {
+	  User user = getUser(email);
+	  //user.setEmail(email);
+	  user.setPassword(password);
+	  //aggiorno la tupla nella tabella con la password dello user 
+	  em.persist(user);
+	  Registered reg = new Registered();
+	  reg.setName(firstName);
+	  reg.setSurname(lastName);
+	  reg.setBirthdate(birthDate);
+	  reg.setUser_id(user.getId());
+	  em.persist(reg);
+	  return true;
+  }
+  
+  public boolean createUser(String email) {
+	  User user = new User();
+	  user.setEmail(email);
+	  em.persist(user);
+	  return true;
+  }
+  
+  public User getUser(String email) {
+	  Query q = em.createNamedQuery("User.findUserByEmail").setParameter("email", email);
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (User) toReturn.get(0);
+      
+      return null;
+  }
+  
+  public User getUser(int id) {
+	  Query q = em.createNamedQuery("User.findUserById").setParameter("id", id);
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (User) toReturn.get(0);
+      
+      return null;
+  }
+  
+  public Registered getRegistered(int user_id) {
+	  Query q = em.createNamedQuery("Registered.findRegistered").setParameter("user_id", user_id);
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (Registered) toReturn.get(0);
+      
+      return null;
+  }
+  
+  public Admin getAdmin(int user_id) {
+	  Query q = em.createNamedQuery("Admin.findAdmin").setParameter("user_id", user_id);
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (Admin) toReturn.get(0);
+      
+      return null;
+  }
+  
+  public Registered getRegistered(User user) {
+	  Query q = em.createNamedQuery("Registered.findRegistered").setParameter("user_id", user.getId());
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (Registered) toReturn.get(0);
+      
+      return null;
+  }
+ 
+  public Admin getAdmin(User user) {
+	  Query q = em.createNamedQuery("Admin.findAdmin").setParameter("user_id", user.getId());
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (Admin) toReturn.get(0);
+      
+      return null;
+  }
+  
+  public boolean verifyOrCreateUser(String email) {
+	  User u = getUser(email);
+	  if ( u == null )
+		  return createUser(email);
+	  if ( u != null && getRegistered(u) == null && getAdmin(u) == null) 
+		  return true;
+	  return false;
+  }
   
   public void createTestData() {
     
