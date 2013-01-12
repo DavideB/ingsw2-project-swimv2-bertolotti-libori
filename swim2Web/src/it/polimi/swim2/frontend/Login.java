@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
 		}
 		//se non è nessuno dei due esegue una redirect sulla pagina d'errore
 		request.getSession().setAttribute("error","Indirizzo email " + username + " o password "+password+ " non corretti");
-		response.sendRedirect("error.jsp");
+		response.sendRedirect("access/home.jsp");
 		return;
 	}
 

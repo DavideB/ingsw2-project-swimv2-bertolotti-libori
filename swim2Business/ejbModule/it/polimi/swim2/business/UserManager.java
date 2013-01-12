@@ -5,6 +5,7 @@ import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.persistence.Admin;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.User;
+import it.polimi.swim2.other.RegisteredJoinUser;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -213,5 +214,14 @@ public Registered getUserData(String username) {
     }
 	return null;
 }   
+
+public List<RegisteredJoinUser> getAllRegisteredJoinUser() {
+    ArrayList<RegisteredJoinUser> toReturn = new ArrayList<RegisteredJoinUser>();
+    Query q = em.createNamedQuery("Registered.findAllRegisteredJoinUser"); 
+    for (Object po : q.getResultList()) {
+      toReturn.add((RegisteredJoinUser) po);
+    }
+    return toReturn;
+}  
     
 }
