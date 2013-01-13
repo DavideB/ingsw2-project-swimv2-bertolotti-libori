@@ -14,7 +14,6 @@ import java.util.Date;
 @Entity
 @Table(name="REGISTERED")
 @NamedQueries( {
-
 @NamedQuery(name="Registered.getUserData", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email" ),
 @NamedQuery(name="Registered.findAll", 
 query="SELECT r FROM Registered r "),
@@ -25,6 +24,7 @@ query="SELECT NEW it.polimi.swim2.other.RegisteredJoinUser(u, r) from User u, Re
 @NamedQuery(name="Registered.findRegistered",
 query="SELECT r FROM Registered r where r.user_id = :user_id")
 })
+
 public class Registered implements Serializable {
 	private static final long serialVersionUID = 1L;
 

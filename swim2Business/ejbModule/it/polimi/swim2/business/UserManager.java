@@ -1,3 +1,4 @@
+   
 package it.polimi.swim2.business;
 
 
@@ -12,7 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -31,6 +32,15 @@ public class UserManager implements StatelessEJB {
     return toReturn;
   }
   
+  public List<Registered> getAllRegistered() {
+	    ArrayList<Registered> toReturn = new ArrayList<Registered>();
+	    Query q = em.createNamedQuery("Registered.findAll"); 
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Registered) po);
+	    }
+	    return toReturn;
+  }
+
   public List<Admin> getAllAdmin() {
 	    ArrayList<Admin> toReturn = new ArrayList<Admin>();
 	    Query q = em.createNamedQuery("Admin.findAll"); 
@@ -40,14 +50,15 @@ public class UserManager implements StatelessEJB {
 	    return toReturn;
   }
   
-  public List<Registered> getAllRegistered() {
-	    ArrayList<Registered> toReturn = new ArrayList<Registered>();
-	    Query q = em.createNamedQuery("findAllRegistered"); 
+  public List<RegisteredJoinUser> getAllRegisteredJoinUser() {
+	    ArrayList<RegisteredJoinUser> toReturn = new ArrayList<RegisteredJoinUser>();
+	    Query q = em.createNamedQuery("Registered.findAllRegisteredJoinUser"); 
 	    for (Object po : q.getResultList()) {
-	      toReturn.add((Registered) po);
+	      toReturn.add((RegisteredJoinUser) po);
 	    }
 	    return toReturn;
-  }
+}  
+  
   
   @Override
   public Registered loginReg(String username, String password) {
@@ -89,6 +100,7 @@ public class UserManager implements StatelessEJB {
 	  em.persist(reg);
   }
   
+   
   @Override
   @TransactionAttribute
   public boolean registerUser(String firstName, String lastName, String email, String password, Date birthDate) {
@@ -214,14 +226,5 @@ public Registered getUserData(String username) {
     }
 	return null;
 }   
-
-public List<RegisteredJoinUser> getAllRegisteredJoinUser() {
-    ArrayList<RegisteredJoinUser> toReturn = new ArrayList<RegisteredJoinUser>();
-    Query q = em.createNamedQuery("Registered.findAllRegisteredJoinUser"); 
-    for (Object po : q.getResultList()) {
-      toReturn.add((RegisteredJoinUser) po);
-    }
-    return toReturn;
-}  
     
 }
