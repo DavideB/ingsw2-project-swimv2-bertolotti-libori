@@ -85,10 +85,9 @@ function checkPwd(theForm) {
 							<div class="span12"><input type="submit" value="Conferma"></div>	
 						</form>
 						
-						<form action="UploadImage" method="post">
-							Scegli un'immagine per il profilo<input name="newImage" type="file">
-							<input type="submit" value="Conferma">
-						
+						<form enctype="multipart/form-data" action="UploadImage" method="post">
+							Scegli un'immagine per il profilo
+							<input name="newImage" type="file">						
 							<div class="span12"><input type="submit" value="Conferma"></div>	
 						</form>
 						

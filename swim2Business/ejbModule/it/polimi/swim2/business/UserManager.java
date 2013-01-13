@@ -226,5 +226,11 @@ public Registered getUserData(String username) {
     }
 	return null;
 }   
+
+	@Override
+	public void changeImg(Registered r, String url) {
+		r.setImageUrl(url);
+		em.merge(r);
+	}
     
 }

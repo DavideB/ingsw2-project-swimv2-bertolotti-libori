@@ -17,6 +17,8 @@ import java.util.Date;
 @NamedQuery(name="Registered.getUserData", query="Select r from User u, Registered r where u.id = r.user_id and u.email= :email" ),
 @NamedQuery(name="Registered.findAll", 
 query="SELECT r FROM Registered r "),
+@NamedQuery(name="Registered.findAllOthers", 
+query="SELECT r FROM Registered r where r.id <> :id"),
 @NamedQuery(name="Registered.getUser",
 query="SELECT r from User u, Registered r where u.id = r.user_id and u.email= :email and u.password= :password" ),
 @NamedQuery(name="Registered.findAllRegisteredJoinUser",
