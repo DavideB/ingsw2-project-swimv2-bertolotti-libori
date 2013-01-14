@@ -74,7 +74,7 @@
     <servlet-name>ManageSkills</servlet-name>
     <url-pattern>/ManageSkills</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description>Handles access from non-registered users</description>
     <display-name>NonRegUserAcc</display-name>
     <servlet-name>NonRegUserAcc</servlet-name>
@@ -93,5 +93,15 @@
   <servlet-mapping>
     <servlet-name>UserRegistration</servlet-name>
     <url-pattern>/userregistration</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchForUser</display-name>
+    <servlet-name>SearchForUser</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SearchForUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchForUser</servlet-name>
+    <url-pattern>/SearchForUser</url-pattern>
   </servlet-mapping>
 </web-app>

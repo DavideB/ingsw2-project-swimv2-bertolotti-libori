@@ -28,4 +28,5 @@ public interface StatelessEJB {
 	public Admin getAdmin(User user);
 	public List<RegisteredJoinUser> getAllRegisteredJoinUser();
 	void changeImg(Registered r, String url);
+	List<Registered> getAllOtherRegistered();
 }

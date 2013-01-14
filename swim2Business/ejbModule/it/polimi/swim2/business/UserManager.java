@@ -41,6 +41,15 @@ public class UserManager implements StatelessEJB {
 	    return toReturn;
   }
 
+  @Override
+  public List<Registered> getAllOtherRegistered() {
+	    ArrayList<Registered> toReturn = new ArrayList<Registered>();
+	    Query q = em.createNamedQuery("Registered.findAllOthers"); 
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Registered) po);
+	    }
+	    return toReturn;
+}
   public List<Admin> getAllAdmin() {
 	    ArrayList<Admin> toReturn = new ArrayList<Admin>();
 	    Query q = em.createNamedQuery("Admin.findAll"); 
