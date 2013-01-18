@@ -104,4 +104,44 @@
     <servlet-name>SearchForUser</servlet-name>
     <url-pattern>/SearchForUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendFriendshipRequest</display-name>
+    <servlet-name>SendFriendshipRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SendFriendshipRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendFriendshipRequest</servlet-name>
+    <url-pattern>/SendFriendshipRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendHelpRequest</display-name>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SendHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <url-pattern>/SendHelpRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AnswerFriendshipRequest</display-name>
+    <servlet-name>AnswerFriendshipRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.AnswerFriendshipRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnswerFriendshipRequest</servlet-name>
+    <url-pattern>/AnswerFriendshipRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AnswerToHelpRequest</display-name>
+    <servlet-name>AnswerToHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.AnswerToHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnswerToHelpRequest</servlet-name>
+    <url-pattern>/AnswerToHelpRequest</url-pattern>
+  </servlet-mapping>
 </web-app>
