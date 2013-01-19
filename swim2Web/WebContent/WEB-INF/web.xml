@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>swim2Web</display-name>
-  <servlet>
-    <display-name>Test</display-name>
-    <servlet-name>Test</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.Test</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Test</servlet-name>
-    <url-pattern>/test</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <display-name>ListUsers</display-name>
-    <servlet-name>ListUsers</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.ListUsers</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ListUsers</servlet-name>
-    <url-pattern>/listusers</url-pattern>
-  </servlet-mapping>
+  
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>login.html</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -126,13 +107,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>AnswerFriendshipRequest</display-name>
-    <servlet-name>AnswerFriendshipRequest</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.AnswerFriendshipRequest</servlet-class>
+    <display-name>AnswerToFriendshipRequest</display-name>
+    <servlet-name>AnswerToFriendshipRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.AnswerToFriendshipRequest</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AnswerFriendshipRequest</servlet-name>
-    <url-pattern>/AnswerFriendshipRequest</url-pattern>
+    <servlet-name>AnswerToFriendshipRequest</servlet-name>
+    <url-pattern>/AnswerToFriendshipRequest</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -217,47 +198,21 @@
     <url-pattern>/listnewskillrequests</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>RetrieveHelprequests</display-name>
-    <servlet-name>RetrieveHelprequests</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.RetrieveHelprequests</servlet-class>
+    <display-name>Test</display-name>
+    <servlet-name>Test</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.Test</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RetrieveHelprequests</servlet-name>
-    <url-pattern>/RetrieveHelprequests</url-pattern>
-    <url-pattern>/retrievehelprequests</url-pattern>
+    <servlet-name>Test</servlet-name>
+    <url-pattern>/test</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>RetrieveNewSkillrequests</display-name>
-    <servlet-name>RetrieveNewSkillrequests</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.RetrieveNewSkillrequests</servlet-class>
+    <display-name>ListUsers</display-name>
+    <servlet-name>ListUsers</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ListUsers</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RetrieveNewSkillrequests</servlet-name>
-    <url-pattern>/RetrieveNewSkillrequests</url-pattern>
-    <url-pattern>/retrievenewskillrequests</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RetrieveSkills</display-name>
-    <servlet-name>RetrieveSkills</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.RetrieveSkills</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RetrieveSkills</servlet-name>
-    <url-pattern>/RetrieveSkills</url-pattern>
-    <url-pattern>/retrieveskills</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RetrieveUsers</display-name>
-    <servlet-name>RetrieveUsers</servlet-name>
-    <servlet-class>it.polimi.swim2.frontend.RetrieveUsers</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RetrieveUsers</servlet-name>
-    <url-pattern>/RetrieveUsers</url-pattern>
-    <url-pattern>/retrieveusers</url-pattern>
+    <servlet-name>ListUsers</servlet-name>
+    <url-pattern>/listusers</url-pattern>
   </servlet-mapping>
 </web-app>

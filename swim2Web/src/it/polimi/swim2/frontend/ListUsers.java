@@ -68,27 +68,27 @@ public class ListUsers extends HttpServlet {
 		    List<User> people = statelessBean.getAllUsers();
 		    for (User person : people) {
 		      out = out + "User retrieved: e-mail= " + person.getEmail() + " Password= " + person.getPassword() + "</br>";
-		      }
+		      	}
 
 		    List<Registered> reg_people= statelessBean.getAllRegistered();
 		    for (Registered person : reg_people) {
 		    	out = out +	"Registered User retrieved: e-mail= " + (String) statelessBean.getUser(person.getUser_id()).getEmail()
 			    		  + " Password= " + (String) statelessBean.getUser(person.getUser_id()).getPassword() 
 			    		  + " Name= " + person.getName() + " Surname= " + person.getSurname() + " Birthdate= " + person.getBirthdate() + "</br>";
-			  } 
+		    	} 
 		    
 		    List<Admin> adm_people= statelessBean.getAllAdmin();
 		    for (Admin person : adm_people) {
 		    	out = out +	"Admin User retrieved: e-mail= " + (String) statelessBean.getUser(person.getUser_id()).getEmail()
 			    		  + " Password= " + (String) statelessBean.getUser(person.getUser_id()).getPassword() 
 			    		  + " Name= " + person.getName() + " Surname= " + person.getSurname() + " Birthdate= " + person.getBirthdate() + "</br>";
-			  } 
-	/*	    
-		    List<RegisteredJoinUser> rju_people= statelessBean.getAllRegisteredJoinUser();
+		    	} 
+
+/*		    List<RegisteredJoinUser> rju_people= statelessBean.getAllRegisteredJoinUser();
 		    for (RegisteredJoinUser person : rju_people) {
-			      writer.write("Registered User retrieved: e-mail= " + person.getEmail() + " Password= " + person.getPassword() + " Name= " + person.getName() + " Surname= " + person.getSurname() + " Birthdate= " + person.getBirthdate() + "\n");
+			      out = out + "Registered User retrieved: e-mail= " + person.getEmail() + " Password= " + person.getPassword() + " Name= " + person.getName() + " Surname= " + person.getSurname() + " Birthdate= " + person.getBirthdate() + "</br>";
 			  } 
-	 */
+*/	 
 		  }
 	  
 	  private void displayPeople(HttpServletResponse resp) throws IOException {

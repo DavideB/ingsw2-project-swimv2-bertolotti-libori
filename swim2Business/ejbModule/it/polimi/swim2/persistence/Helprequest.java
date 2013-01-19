@@ -2,6 +2,7 @@ package it.polimi.swim2.persistence;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +12,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name="HELPREQUEST")
+@NamedQueries({
+	@NamedQuery(name="Helprequest.findAll",
+	query="SELECT h FROM Helprequest h"),
+	@NamedQuery(name="Helprequest.findHelprequestById",
+	query="SELECT h FROM Helprequest h where h.id = :hr_id"),
+	@NamedQuery(name="Helprequest.findHelprequestByUserId",
+	query="SELECT h FROM Helprequest h where h.sen_id = :user_id"),
+	@NamedQuery(name="Helprequest.findHelprequestBySkillId",
+	query="SELECT h FROM Helprequest h where h.skillId = :skill_id")
+})
+
 public class Helprequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 

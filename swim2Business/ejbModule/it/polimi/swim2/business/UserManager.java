@@ -41,9 +41,10 @@ public class UserManager implements StatelessEJB {
   }
 
   @Override
-  public List<Registered> getAllOtherRegistered() {
+  public List<Registered> getAllOtherRegistered(String email) {
 	    ArrayList<Registered> toReturn = new ArrayList<Registered>();
 	    Query q = em.createNamedQuery("Registered.findAllOthers"); 
+		q.setParameter("id", getUserData(email).getId());
 	    for (Object po : q.getResultList()) {
 	      toReturn.add((Registered) po);
 	    }
@@ -107,7 +108,6 @@ public class UserManager implements StatelessEJB {
 	  reg.setUser_id(user.getId());
 	  em.persist(reg);
   }
-  
    
   @Override
   @TransactionAttribute

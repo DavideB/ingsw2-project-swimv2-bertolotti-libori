@@ -54,8 +54,6 @@ public class Test extends HttpServlet {
 	    statelessBean.createTestData();
 	    writer.write("done\n\n");
 	    displayPeople(resp);
-	    writer.write("\nDelete some data...");
-	    statelessBean.deleteSomeData();    
 	    writer.write("done\n\n");
 	    displayPeople(resp);
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

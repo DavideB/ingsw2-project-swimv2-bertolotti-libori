@@ -44,7 +44,14 @@ public class SearchForUser extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().setAttribute("allOtherUsers", statelessBean.getAllOtherRegistered());
+		String username = (String) request.getSession().getAttribute("username");
+		//controlla che l'accesso sia stato effettuato
+		if (username==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
+		request.getSession().setAttribute("allOtherUsers", statelessBean.getAllOtherRegistered(username));
 		request.getRequestDispatcher("WEB-INF/registered/Ricerca Utente.jsp").forward(request, response);
 		return;
 	}

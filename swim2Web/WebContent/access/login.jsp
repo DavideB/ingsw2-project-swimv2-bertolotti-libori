@@ -8,6 +8,7 @@
 </head>
 <body>
 	<div><a href="/swim2Web/index.jsp">Home</a></div>
+	<div><a href="/swim2Web/logout">Logout</a></div>
 	<h1>Welcome to the SWIMv2 Application</h1>
 	<%= session.getAttribute("error")  %>
 	<%  session.setAttribute("error", ""); %>

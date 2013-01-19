@@ -1,5 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*,java.text.*"%>
+<%
+ServletContext context = config.getServletContext();       
+List<String> resultlist = null;
+String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
+String now = null;
+Calendar cal = Calendar.getInstance();
+SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+ %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +32,7 @@ Per registrarti, riempi i campi con i tuoi dati e clicca su "Register":
 		First Name: <input type="text" name="firstname" /><br />
 		Surname: <input type="text" name="lastname" /><br />
 		Birthdate: 
-		<table border=>
+		<table border>
 			<tr>
 				<td>
 					<label>day</label>
@@ -57,9 +65,54 @@ Per registrarti, riempi i campi con i tuoi dati e clicca su "Register":
 						<% ;} %>
 					</select>
 				</td>
+				<td>
+					<input type="submit" value="Register" />
+				</td>
 			</tr>
-		</table>
-		<input type="submit" value="Register" />
-		</form>
+		</table>		
+		</form>	
+<h2>Creazione Richieste di Aiuto</h2>
+<table border>
+	<tr>
+		<td>
+			<table border><thead>Elenco degli Skill disponibili:</thead>
+			<%      
+		 	//response.sendRedirect(response.encodeRedirectURL("/listskills"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/retrieveskills");
+			dispatcher.include(request,response); 
+			resultlist = (ArrayList<String>) session.getAttribute("resultlist");
+			if ( resultlist != null && resultlist.size()>0 ) {
+			for (int i=0; i<resultlist.size(); i++) {
+			%>
+			<tr><td><%= resultlist.get(i) %></td></tr>
+			<% } }%>
+			</table>
+		</td>
+		<td>
+			<table border><thead>Crea la tua richiesta</thead>
+			<tr><td>
+				<form action="/swim2Web/helprequestcreation" method="post">	
+				<input type="hidden" name="email" value="<%= session.getAttribute("email") %>" />
+			
+			    <label>Abilitá:</label>
+				<select name="skillname" id="skillname">
+						<%if ( resultlist != null && resultlist.size()>0 ) {
+							for (int i=0; i<resultlist.size(); i++) {
+						%>
+							<option value=<%= resultlist.get(i) %>><%= resultlist.get(i) %></option>
+						<%	}
+						  }
+						%>
+				</select><br>
+				<label>Descrizione:</label>
+				<input type="text" name="descr" />
+				<input type="submit" value="Submit" /><br>
+				</form>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
 </body>
 </html>

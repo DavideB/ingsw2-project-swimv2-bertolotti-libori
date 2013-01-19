@@ -12,7 +12,6 @@ import java.util.Date;
  */
 @Entity
 @Table(name="SKILL")
-@NamedQuery(name="Skill.findAll",query="SELECT s FROM Skill s ")
 @NamedQueries({
 	@NamedQuery(name="Skill.findAll",
 	query="SELECT s FROM Skill s"),

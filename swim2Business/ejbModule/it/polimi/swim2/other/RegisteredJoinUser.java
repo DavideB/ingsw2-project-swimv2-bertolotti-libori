@@ -6,29 +6,36 @@ import it.polimi.swim2.persistence.Registered;
 
 public class RegisteredJoinUser {
 
-	private int id;
-
-    public RegisteredJoinUser(User u,Registered r) {
-    	
-    };
+	public RegisteredJoinUser(User u, Registered r) {
+/*		email = u.getEmail();
+		password = u.getPassword();
+		name = r.getName();
+		surname = r.getSurname();
+		birthdate =  r.getBirthdate();
+*/		
+	};
+	
+//	private int u_id;   
 
 	private String email;
 
 	private String password;
 	
+//	private int r_id;
+	
 	private Date birthdate;
 
-	private String imageUrl;
+//	private String imageUrl;
 
 	private String name;
 
 	private String surname;
  
 
-	public int getId() {
-		return this.id;
+/*	public int getId() {
+		return this.u_id;
 	}
-
+*/
 
 	public String getEmail() {
 		return this.email;
@@ -45,10 +52,10 @@ public class RegisteredJoinUser {
 		this.birthdate = birthdate;
 	}
 
-	public String getImageUrl() {
+/*	public String getImageUrl() {
 		return this.imageUrl;
 	}
-
+*/
 
 	public String getName() {
 		return this.name;

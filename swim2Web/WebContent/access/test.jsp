@@ -13,8 +13,10 @@
 	<h1>Welcome to the SWIMv2 Application</h1>
 	<%= session.getAttribute("error")  %>
 	<%  session.setAttribute("error", ""); %>
-	<h2>Test Page - list users</h2>
-		<a href="/swim2Web/listusers">Elenca tutti gli utenti</a>
+	<h2>Test Page - list users and requests for help</h2>
+		<a href="/swim2Web/listusers">Elenca tutti gli utenti</a><br>
+		<a href="/swim2Web/listhelprequests">Elenca tutte le richieste di aiuto</a><br>
+		<a href="/swim2Web/listnewskillrequests">Elenca tutte le richieste di aggiunta di nuove abilitá</a>
 	<%= session.getAttribute("out") %>
 	<% session.setAttribute("out", null); %>
 	<h2>Test Page - insert a new user</h2>

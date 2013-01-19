@@ -54,13 +54,15 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		init();
 		String username = (String) request.getParameter("username");
 		String password = (String) request.getParameter("password");
 		//controlla se è un utente registrato
 		Registered r;
 		if ((r = statelessBean.loginReg(username, password))!=null) {
 			request.getSession().setAttribute("username", username);
-			request.getSession().setAttribute("data", r);
+			request.getSession().setAttribute("email", username);
+			request.getSession().setAttribute("userData", r);
 			request.getRequestDispatcher("WEB-INF/registered/home.jsp").forward(request, response);
 			return;
 		}
@@ -68,14 +70,15 @@ public class Login extends HttpServlet {
 		Admin a;
 		if ((a = statelessBean.loginAdmin(username, password))!=null) {
 			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("email", username);
 			request.getSession().setAttribute("data", r);
 			request.setAttribute("test", statelessBean.getAllUsers());
 			request.getRequestDispatcher("WEB-INF/admin/home.jsp").forward(request, response);
 			return;
 		}
-		//se non è nessuno dei due esegue una redirect sulla pagina d'errore
+		//se non è nessuno dei due scrive l'errore nel parametro "error" e esegue una redirect verso la pagina d'origine
 		request.getSession().setAttribute("error","Indirizzo email " + username + " o password "+password+ " non corretti");
-		response.sendRedirect("access/home.jsp");
+		response.sendRedirect("error.jsp");
 		return;
 	}
 

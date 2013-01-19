@@ -2,6 +2,7 @@ package it.polimi.swim2.persistence;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +12,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="NEWABILITYREQUEST")
+@NamedQueries({
+	@NamedQuery(name="Newabilityrequest.findAll",
+	query="SELECT n FROM Newabilityrequest n"),
+	@NamedQuery(name="Newabilityrequest.findById",
+	query="SELECT n FROM Newabilityrequest n where n.mak_id = :mak_id")
+})
 public class Newabilityrequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
