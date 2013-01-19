@@ -1,7 +1,7 @@
 package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
-import it.polimi.swim2.interfaces.StatelessSkillBean;
+import it.polimi.swim2.interfaces.StatelessEJBSkill;
 import it.polimi.swim2.persistence.Skill;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ManageSkills extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StatelessEJB statelessBean;
-    private StatelessSkillBean skills;   
+    private StatelessEJBSkill skills;   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +38,7 @@ public class ManageSkills extends HttpServlet {
 	    	
   	      Context context = new InitialContext();
   	      statelessBean = (StatelessEJB) context.lookup("swim2/UserManager/remote");
-  	      skills = (StatelessSkillBean) context.lookup("swim2/SkillManager/remote");
+  	      skills = (StatelessEJBSkill) context.lookup("swim2/SkillManager/remote");
   	    } catch (NamingException e) {
   	      e.printStackTrace();
   	    }

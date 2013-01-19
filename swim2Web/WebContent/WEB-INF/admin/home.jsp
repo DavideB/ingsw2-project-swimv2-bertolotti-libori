@@ -10,8 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div><a href="/swim2Web/index.jsp">Home</a></div>
+	<div><a href="/swim2Web/logout">Logout</a></div>
 	Benvenuto <%= session.getAttribute("username") %>
 	
 	<display:table name="test" />
+	<h1>Welcome to the SWIMv2 Application</h1>
+		<div><a href="/swim2Web/services/skillmgmt.jsp">Gestione Abilitá</a></div>
+		<div><a href="/swim2Web/services/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá</a></div>
 </body>
 </html>

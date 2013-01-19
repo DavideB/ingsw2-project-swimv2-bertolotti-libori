@@ -1,4 +1,3 @@
-   
 package it.polimi.swim2.business;
 
 
@@ -220,10 +219,6 @@ public class UserManager implements StatelessEJB {
     
   }
   
-  public void deleteSomeData() {
-     
-
-    }
 
 @Override
 public Registered getUserData(String username) {

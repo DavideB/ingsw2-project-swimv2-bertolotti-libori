@@ -13,6 +13,14 @@ import java.util.Date;
 @Entity
 @Table(name="SKILL")
 @NamedQuery(name="Skill.findAll",query="SELECT s FROM Skill s ")
+@NamedQueries({
+	@NamedQuery(name="Skill.findAll",
+	query="SELECT s FROM Skill s"),
+	@NamedQuery(name="Skill.findSkillById",
+	query="SELECT s FROM Skill s where s.id = :id"),
+	@NamedQuery(name="Skill.findSkillByName",
+	query="SELECT s FROM Skill s where s.name = :name")
+})
 public class Skill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
