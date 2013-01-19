@@ -31,12 +31,7 @@
 					</div>
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
-						<% 
-							String imgUrl = ((ArrayList<Registered>)session.getAttribute("userData")).get(0).getImageUrl();
-							if (imgUrl!=null) 
-						%>
-							<img alt="Immagine del Profilo" src="img/users/<%=imgUrl%>">
-						<%; %>
+						<%@ include file="profileimage.jsp" %>
 					</div>
 				</div>
 			</div>

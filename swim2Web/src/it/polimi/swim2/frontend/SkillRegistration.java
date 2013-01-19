@@ -76,7 +76,7 @@ public class SkillRegistration extends HttpServlet {
 	    	//( statelessBeanSkill.createSkill(name, defdate, "",lead_id) )
 	    	( statelessBeanSkill.createSkill(skillname) )
 	    {
-	    	request.getRequestDispatcher("services/skillmgmt.jsp").forward(request, response);
+	    	request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
 	    }
 	    
 	    else
@@ -84,7 +84,7 @@ public class SkillRegistration extends HttpServlet {
 	    	{
 	    	request.getSession().setAttribute("error","Registration failed. Please verify data.\n");
 	    	//response.sendRedirect("error.jsp");
-	    	response.sendRedirect("services/skillmgmt.jsp");
+	    	response.sendRedirect("error.jsp");
 	    	}
 		return;   	
 	}

@@ -47,18 +47,15 @@ public class Test extends HttpServlet {
 	  }
 	  
 	  @Override
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+	public void doGet(HttpServletRequest request, HttpServletResponse resp)
 	                    throws ServletException, IOException {
-	    PrintWriter writer = resp.getWriter();
-	    writer.write("Create test data...");
-	    statelessBean.createTestData();
-	    writer.write("done\n\n");
-	    displayPeople(resp);
-	    writer.write("done\n\n");
-	    displayPeople(resp);
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String password = request.getParameter("password");
 	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	    try {
-			statelessBean.createUser("Emanuele", "Libori", "emanuele.libori@gmail.com", "qwerty", sdf.parse("20/07/1990"));
+			statelessBean.createUser(name, surname, email, password, sdf.parse("20/07/1990"));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

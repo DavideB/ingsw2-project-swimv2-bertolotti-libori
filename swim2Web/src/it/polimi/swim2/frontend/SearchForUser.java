@@ -51,7 +51,7 @@ public class SearchForUser extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-		request.getSession().setAttribute("allOtherUsers", statelessBean.getAllOtherRegistered(username));
+		request.setAttribute("allOtherUsers", statelessBean.getAllOtherRegistered(username));
 		request.getRequestDispatcher("WEB-INF/registered/Ricerca Utente.jsp").forward(request, response);
 		return;
 	}

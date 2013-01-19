@@ -24,7 +24,13 @@ public class AnswerToFriendshipRequest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String username = (String) request.getSession().getAttribute("username");
+		//controlla che l'accesso sia stato effettuato
+		if (username==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
 	}
 
 	/**

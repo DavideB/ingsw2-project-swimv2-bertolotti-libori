@@ -52,7 +52,7 @@ public class ManageUserData extends HttpServlet {
 		Registered  r = statelessBean.getUserData(userName);
 		List<Registered> l = new ArrayList<Registered>();
 		l.add(r); 
-		request.getSession().setAttribute("userData", l);
+		//request.getSession().setAttribute("userData", l);
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Profilo Utente.jsp").forward(request, response);
 		return;
 	}

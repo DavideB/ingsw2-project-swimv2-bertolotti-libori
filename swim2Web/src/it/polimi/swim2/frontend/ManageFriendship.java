@@ -51,6 +51,13 @@ public class ManageFriendship extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username = (String) request.getSession().getAttribute("username");
+		//controlla che l'accesso sia stato effettuato
+		if (username==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
 		request.getSession().setAttribute("friends", friendship.getAllFriends());
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Amicizia.jsp").forward(request, response);
 		return;

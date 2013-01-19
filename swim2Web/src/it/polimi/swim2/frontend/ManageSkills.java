@@ -47,6 +47,13 @@ public class ManageSkills extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username = (String) request.getSession().getAttribute("username");
+		//controlla che l'accesso sia stato effettuato
+		if (username==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
 		List<Skill> availableSkills = skills.getAllSkills();
 		request.getSession().setAttribute("availableSkills",  availableSkills);
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Abilità.jsp").forward(request, response);

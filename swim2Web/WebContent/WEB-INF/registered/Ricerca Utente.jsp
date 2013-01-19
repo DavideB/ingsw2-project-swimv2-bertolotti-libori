@@ -24,19 +24,16 @@
 				    <div class="row">
 		   				<div class="span8">
 		   					<display:table name="allOtherUsers">
-		   					</display:table>
+							<display:column property="id" title="Indirizzo email" href="SendFriendshipRequest"
+								paramId="target" />
+						</display:table>
 		   				</div>
 		    		</div>
 				
 					</div>
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
-						<% 
-							String imgUrl = ((ArrayList<Registered>)session.getAttribute("userData")).get(0).getImageUrl();
-							if (imgUrl!=null) 
-						%>
-							<img alt="Immagine del Profilo" src="img/users/<%=imgUrl%>">
-						<%; %>
+						<%@ include file="profileimage.jsp" %>
 					</div>
 				</div>
 			</div>

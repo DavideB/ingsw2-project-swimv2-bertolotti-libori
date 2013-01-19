@@ -56,9 +56,10 @@ public class ListSkills extends HttpServlet {
 		  //request.getSession().setAttribute("resultlist", null);
 		  //displaySkills(response);
 		  listSkills(response);
-		  request.getSession().setAttribute("resultlist", resultlist);
+//		  request.getSession().setAttribute("resultlist", resultlist);
+		  request.getSession().setAttribute("availableSkills", statelessBean.getAllSkills());
 		  //response.sendRedirect(response.encodeRedirectURL("services/nreg.jsp"));
-		  request.getRequestDispatcher("services/list.jsp").forward(request, response);
+		  request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
 	    }
 	  
 	  private void listSkills(HttpServletResponse resp) throws IOException {

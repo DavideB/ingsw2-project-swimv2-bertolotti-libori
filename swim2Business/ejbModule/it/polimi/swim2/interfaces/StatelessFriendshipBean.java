@@ -11,5 +11,5 @@ public interface StatelessFriendshipBean {
 	public List<User> getAllFriends();
 	public void removeFriend(String email);
 	void acceptFriendship(String email);
-	void addFriend(String email, int myId, String message);
+	void addFriend(int targetId, int myId, String message);
 }

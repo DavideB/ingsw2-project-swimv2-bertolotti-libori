@@ -66,7 +66,13 @@ public class HelprequestCreation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		init();
+		String username = (String) request.getSession().getAttribute("username");
+		//controlla che l'accesso sia stato effettuato
+		if (username==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
     	String email = request.getParameter("email");
     	String skillname = request.getParameter("skillname");
     	String descr = request.getParameter("descr");

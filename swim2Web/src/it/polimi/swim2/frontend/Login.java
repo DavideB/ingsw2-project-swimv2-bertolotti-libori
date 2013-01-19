@@ -1,6 +1,7 @@
 package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
+import it.polimi.swim2.interfaces.StatelessEJBSkill;
 import it.polimi.swim2.persistence.Admin;
 import it.polimi.swim2.persistence.Registered;
 
@@ -29,13 +30,15 @@ public class Login extends HttpServlet {
     }
     
 	private StatelessEJB statelessBean;
-	  
+    private StatelessEJBSkill skills;   
+ 
 	  @Override
 	public void init() throws ServletException {
 	    try {
 	    	
 	      Context context = new InitialContext();
 	      statelessBean = (StatelessEJB) context.lookup("swim2/UserManager/remote");
+  	      skills = (StatelessEJBSkill) context.lookup("swim2/SkillManager/remote");
 	    } catch (NamingException e) {
 	      e.printStackTrace();
 	    }
@@ -72,7 +75,6 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("email", username);
 			request.getSession().setAttribute("data", r);
-			request.setAttribute("test", statelessBean.getAllUsers());
 			request.getRequestDispatcher("WEB-INF/admin/home.jsp").forward(request, response);
 			return;
 		}

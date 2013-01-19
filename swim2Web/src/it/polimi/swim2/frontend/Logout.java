@@ -63,14 +63,12 @@ public class Logout extends HttpServlet {
 		init();
 		
 		String username = (String) request.getSession().getAttribute("username");
-		Registered r = (Registered) request.getSession().getAttribute("data");
+		Registered r = (Registered) request.getSession().getAttribute("userData");
 		PrintWriter writer = response.getWriter();
 	    writer.write("User: " + username + "\n");
 
 		if (username != null) {//se c'é un utente registrato annulla i suoi riferimenti nella sessione
-			request.getSession().setAttribute("username", null);
-			request.getSession().setAttribute("password", null);
-			request.getSession().setAttribute("data", null);
+			request.getSession().invalidate();
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
