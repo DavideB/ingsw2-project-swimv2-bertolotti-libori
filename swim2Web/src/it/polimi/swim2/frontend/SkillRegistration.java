@@ -66,17 +66,18 @@ public class SkillRegistration extends HttpServlet {
 		// TODO Auto-generated method stub
 		String skillname = request.getParameter("skillname");
     	String email = request.getParameter("email");
-    	//int lead_id = Integer.parseInt(request.getParameter("lead_id"))
+    	String adminansw = request.getParameter("adminansw");
     	int lead_id = statelessBean.getUser(email).getId();
 
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
     	Date defdate = Calendar.getInstance().getTime();
 
 	    if 	//registrazione skill ok    
-	    	//( statelessBeanSkill.createSkill(name, defdate, "",lead_id) )
-	    	( statelessBeanSkill.createSkill(skillname) )
+	    	//( statelessBeanSkill.createSkill(skillname) )
+	    	( statelessBeanSkill.createSkill(skillname, defdate, adminansw, lead_id))
 	    {
-	    	request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
+	    	//request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
+	    	request.getRequestDispatcher("services/skillmgmt.jsp").forward(request, response);
 	    }
 	    
 	    else
@@ -84,7 +85,7 @@ public class SkillRegistration extends HttpServlet {
 	    	{
 	    	request.getSession().setAttribute("error","Registration failed. Please verify data.\n");
 	    	//response.sendRedirect("error.jsp");
-	    	response.sendRedirect("error.jsp");
+	    	response.sendRedirect("services/skillmgmt.jsp");
 	    	}
 		return;   	
 	}

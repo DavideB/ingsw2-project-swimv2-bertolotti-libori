@@ -15,6 +15,7 @@
 	<%  session.setAttribute("error", ""); %>
 	<h2>Test Page - list users and requests for help</h2>
 		<a href="/swim2Web/listusers">Elenca tutti gli utenti</a><br>
+		<a href="/swim2Web/listskills">Elenca tutti gli Skills presenti</a><br>
 		<a href="/swim2Web/listhelprequests">Elenca tutte le richieste di aiuto</a><br>
 		<a href="/swim2Web/listnewskillrequests">Elenca tutte le richieste di aggiunta di nuove abilitá</a>
 	<%= session.getAttribute("out") %>

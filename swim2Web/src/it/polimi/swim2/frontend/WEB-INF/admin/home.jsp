@@ -20,16 +20,10 @@
 	<%=session.getAttribute("username")%>
 	<h1>Welcome to the SWIMv2 Application</h1>
 	<div>
-		<a href="WEB-INF/admin/skillmgmt.jsp">Gestione Abilitá</a>
+		<a href="listskills">Gestione Abilitá</a>
 	</div>
 	<div>
-		<a href="WEB-INF/admin/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá</a>
-	</div>
-	<div>
-		<a href="/swim2Web/services/skillmgmt.jsp">Gestione Abilitá in /services/...</a>
-	</div>
-	<div>
-		<a href="/swim2Web/services/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá in /services/...</a>
+		<a href="skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá</a>
 	</div>
 </body>
 </html>
