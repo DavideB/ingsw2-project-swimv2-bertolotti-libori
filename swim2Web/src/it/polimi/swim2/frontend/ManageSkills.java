@@ -2,6 +2,7 @@ package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessEJBSkill;
+import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.Skill;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class ManageSkills extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ManageSkills() {
+
         super();
         // TODO Auto-generated constructor stub
     }
@@ -47,15 +49,17 @@ public class ManageSkills extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = (String) request.getSession().getAttribute("username");
+		Registered user = (Registered) request.getSession().getAttribute("userData");
 		//controlla che l'accesso sia stato effettuato
-		if (username==null) {
+		if (user==null) {
 			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
 		List<Skill> availableSkills = skills.getAllSkills();
-		request.getSession().setAttribute("availableSkills",  availableSkills);
+		List<Skill> yourSkills = skills.getUserSkills(user);
+		request.setAttribute("availableSkills",  availableSkills);
+		request.setAttribute("yourSkills",  yourSkills);
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Abilità.jsp").forward(request, response);
 		return;
 	}

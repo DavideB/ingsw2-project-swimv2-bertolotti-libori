@@ -33,7 +33,8 @@ public class SkillManager implements StatelessEJBSkill {
 	/**
      * @see StatelessSkillBean#getAllSkills()
      */
-    public ArrayList<Skill> getAllSkills() {
+    @Override
+    public List<Skill> getAllSkills() {
     	ArrayList<Skill> toReturn = new ArrayList<Skill>();
     	Query q = em.createNamedQuery("Skill.findAll"); 
     	for (Object s : q.getResultList()) {
@@ -45,12 +46,12 @@ public class SkillManager implements StatelessEJBSkill {
 	/**
      * @see StatelessSkillBean#getUserSkills(String)
      */
-    public ArrayList<Skill> getUserSkills(String email) {
+    @Override
+    public List<Skill> getUserSkills(Registered r) {
     	ArrayList<Skill> toReturn = new ArrayList<Skill>();
     	Query q = em.createNamedQuery("RegisteredSkill.findUserSkills"); 
-    	Query getUser = em.createNamedQuery("Registered.getUserData");
-    	Registered user = (Registered) getUser.getSingleResult();
-    	q.setParameter("id", user.getId());
+    	q.setParameter("id", r.getId());
+    	
     	for (Object s : q.getResultList()) {
     		toReturn.add((Skill) s);
 	    }

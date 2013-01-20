@@ -1,5 +1,6 @@
 package it.polimi.swim2.interfaces;
 
+import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.Skill;
 
 import java.util.ArrayList;
@@ -15,5 +16,5 @@ public interface StatelessEJBSkill {
 	public List<Skill> getAllSkills();
 	public Skill getSkill(int id);
 	public Skill getSkill(String name);
-	public ArrayList<Skill> getUserSkills(String email);
+	List<Skill> getUserSkills(Registered r);
 }

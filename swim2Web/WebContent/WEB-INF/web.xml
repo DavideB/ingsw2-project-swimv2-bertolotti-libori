@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>swim2Web</display-name>
-  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -204,5 +203,35 @@
   <servlet-mapping>
     <servlet-name>ListUsers</servlet-name>
     <url-pattern>/listusers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddSkill</display-name>
+    <servlet-name>AddSkill</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.AddSkill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddSkill</servlet-name>
+    <url-pattern>/AddSkill</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveSkill</display-name>
+    <servlet-name>RemoveSkill</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.RemoveSkill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveSkill</servlet-name>
+    <url-pattern>/RemoveSkill</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageHelpRequest</display-name>
+    <servlet-name>ManageHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageHelpRequest</servlet-name>
+    <url-pattern>/ManageHelpRequest</url-pattern>
   </servlet-mapping>
 </web-app>

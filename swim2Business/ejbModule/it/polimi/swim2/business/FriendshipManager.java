@@ -37,7 +37,7 @@ public class FriendshipManager implements StatelessFriendshipBean {
 
 	@Override
 	public void addFriend(int targetId, int myId, String message ) {
-		Query q = em.createNamedQuery("Registered.findRegistered"); 
+		Query q = em.createNamedQuery("Registered.find"); 
 		q.setParameter("id", targetId);
 		List toReturn = q.getResultList();  
 	    if (toReturn != null && !toReturn.isEmpty()) { 

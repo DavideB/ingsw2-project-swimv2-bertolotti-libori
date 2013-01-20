@@ -23,10 +23,12 @@
 			<div id="main">
 				    <div class="row">
 		   				<div class="span8">
-		   					<display:table name="allOtherUsers">
-							<display:column property="id" title="Indirizzo email" href="SendFriendshipRequest"
-								paramId="target" />
-						</display:table>
+			   				<display:table name="allOtherUsers" decorator="it.polimi.swim2.decorators.RegisteredUserDecorator">
+			   					<display:column property="name" title="nome"/>
+			   					<display:column property="surname" title="cognome"/>			   					
+								<display:column property="friendshipLink" title="richiesta amicizia"/>
+								<display:column property="helpReqLink" title="richiesta d'aiuto"/>								
+							</display:table>
 		   				</div>
 		    		</div>
 				

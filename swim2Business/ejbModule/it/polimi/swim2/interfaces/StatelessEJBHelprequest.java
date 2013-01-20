@@ -1,6 +1,7 @@
 package it.polimi.swim2.interfaces;
 
 import it.polimi.swim2.persistence.Helprequest;
+import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.Skill;
 
 import java.util.Date;
@@ -16,4 +17,6 @@ public interface StatelessEJBHelprequest {
 	public List<Helprequest> getUserHelprequests(int userId);
 	public List<Helprequest> getSkillHelprequests(int skillId);
 	public Helprequest getHelprequest(int id);
+	List<Helprequest> getYourFriendsHelprequests(Registered r);
+	List<Helprequest> getOthersHelprequests(Registered r);
 }
