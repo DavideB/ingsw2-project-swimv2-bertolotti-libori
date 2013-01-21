@@ -12,6 +12,7 @@ import javax.ejb.Remote;
 public interface StatelessEJBSkillrequest {
 	public boolean createSkillrequest(int mak_id, Date mak_date, String message);
 	public List<Newabilityrequest> getAllSkillrequests();
+	public List<Newabilityrequest> getUnansweredSkillrequests(Date mak_date);
 	public Newabilityrequest getSkillrequest(int mak_id);
 
 }

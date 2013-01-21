@@ -73,8 +73,6 @@ public class RetrieveHelprequests extends HttpServlet {
 		  init();
 		  resultlist.clear();
 		  requestHelprequest(response);
-		  //request.getSession().setAttribute("out", out);
-		  //request.getRequestDispatcher("services/list.jsp").forward(request, response);
 		  return;
 	    }
 	  
@@ -94,16 +92,4 @@ public class RetrieveHelprequests extends HttpServlet {
 		    }
 		    resultlist.add(h_request);
 		  }	 
-  
-	  private void displayHelprequests(HttpServletResponse resp) throws IOException {
-		  
-	    PrintWriter writer = resp.getWriter();
-	    //writer.write("List of Helprequest ejbs:\n");    
-	    
-	    List<Helprequest> helprequestList = statelessBeanHelprequest.getAllHelprequests();
-	    for (Helprequest helprequest : helprequestList) {
-	      writer.write("Request for help description retrieved: " + helprequest.getMessage() + "\n");
-	      }
-	  }
-
 }

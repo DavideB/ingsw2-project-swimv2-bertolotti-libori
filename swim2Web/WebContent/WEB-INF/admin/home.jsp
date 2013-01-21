@@ -5,19 +5,39 @@
 <jsp:directive.page import="it.polimi.swim2.persistence.*" />
 <!-- jsp:directive.page import="org.displaytag.*" /-->
 <%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+
+<%  String username = (String)session.getAttribute("username"); 
+    String password = (String)session.getAttribute("password");
+    String email = (String)session.getAttribute("email");
+    Boolean isadmin = (Boolean)session.getAttribute("isadmin");
+%>
 <html>
 <head>
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<a href="index.jsp">Home</a>
-	</div>
-	<div>
-		<a href="logout">Logout</a>
-	</div>
-	Benvenuto
-	<%=session.getAttribute("username")%>
+	<div>Utente<%if ( username != null ) { %> (registrato): <%= username %> <% } 
+				 else if ( email!=null ) { %> (non registrato): <%= email %> <% } 
+					  else { %>: nessun utente <% } %></div>
+	<table> 
+		<tr>	
+			<td><a href="/swim2Web/index.jsp">Home   </a></td>
+			<%if ( username == null && email!=null) {%>
+			<td><a href="/swim2Web/services/nreg.jsp">Servizi Utenti Non Registrati   </a></td>
+			<% } %>
+			<%if ( username != null && email!=null) {
+				if ( isadmin ) { %>
+					<td><a href="WEB-INF/admin/home.jsp">Servizi Admin   </a></td>
+				<% }
+				else {%>
+					<td><a href="/swim2Web/services/reg.jsp">Servizi Utenti Registrati   </a></td>
+				<% } %>
+			<td><a href="/swim2Web/logout">Logout   </a></td>
+			<% } %>			
+			<td><a href="/swim2Web/access/test.jsp">Test Page   </a></td>
+		</tr>
+	</table>
+
 	<h1>Welcome to the SWIMv2 Application</h1>
 	<div>
 		<a href="WEB-INF/admin/skillmgmt.jsp">Gestione Abilitá</a>

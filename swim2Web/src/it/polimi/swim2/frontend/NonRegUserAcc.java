@@ -62,9 +62,18 @@ public class NonRegUserAcc extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	String email = request.getParameter("email");
+    	String username = (String)request.getSession().getAttribute("username"); 
+        String password = (String)request.getSession().getAttribute("password");
     	//PrintWriter writer = response.getWriter();
-	    
-	    if /* 
+    	//response.sendRedirect(response.encodeRedirectURL("/listskills"));
+    	if ( username!=null ) {
+    		request.getSession().setAttribute("error", "You should first logout before trying to access as a non registered user");
+    		response.sendRedirect( "access/home.jsp" );
+    		//RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/logout");
+    		//dispatcher.include(request,response);
+    		return;
+    	}
+    	if /* 
 	    	* se e-mail non esiste, crea un nuovo utente con l'indirizzo e-mail specificato,
 	        * se e-mail esiste verifica che non appartenga ad un utente registrato
 	        */

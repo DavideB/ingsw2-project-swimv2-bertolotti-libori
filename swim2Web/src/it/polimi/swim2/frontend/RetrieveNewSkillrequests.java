@@ -45,7 +45,6 @@ public class RetrieveNewSkillrequests extends HttpServlet {
     private StatelessEJB statelessBean;
     
     private String out = new String();
-    private String[] ability = new String[2];
     private ArrayList<String[]> resultlist = new ArrayList<String[]>();
 		
 	  @Override
@@ -76,7 +75,7 @@ public class RetrieveNewSkillrequests extends HttpServlet {
 		// TODO Auto-generated method stub
 		init();
 		resultlist.clear();
-		listSkillrequests(response);
+		retrieveSkillrequests(response);
 		request.getSession().setAttribute("resultlist", resultlist);
 		//request.getSession().setAttribute("out", out);
 		//request.getRequestDispatcher("services/list.jsp").forward(request, response);
@@ -84,13 +83,17 @@ public class RetrieveNewSkillrequests extends HttpServlet {
 		return;
 	    }
 	  
-	  private void listSkillrequests(HttpServletResponse resp) throws IOException {
+	  private void retrieveSkillrequests(HttpServletResponse resp) throws IOException {
 		  
 		  //out = "List of NewSkillrequests ejbs:</br>";    
 		  
-		    List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getAllSkillrequests();
+		  //List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getAllSkillrequests();
+		  SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		  Date mak_date = new Date();
+	    	try {mak_date = sdf.parse("01/01/0001");} catch(Exception e) {e.printStackTrace();};
+		    List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getUnansweredSkillrequests(mak_date);
 		    for (Newabilityrequest newabilityrequest : newabilityrequests) {
-		    	
+		        String[] ability = new String[2];
 		    	ability[0] = (String) statelessBean.getUser(newabilityrequest.getMak_id()).getEmail();
 		    	ability[1] = newabilityrequest.getMessage();
 		    	resultlist.add(ability);

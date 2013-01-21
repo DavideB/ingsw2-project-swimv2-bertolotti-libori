@@ -77,7 +77,10 @@ public class NewSkillrequest extends HttpServlet {
     	int mak_id = statelessBean.getUser(email).getId();
 
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-    	Date mak_date = Calendar.getInstance().getTime();
+    	//Date mak_date = Calendar.getInstance().getTime();
+    	Date mak_date = new Date();
+    	try {mak_date = sdf.parse("01/01/0001");} catch(Exception e) {e.printStackTrace();};
+    	//Date mak_date=null;
 
 	    if 	//registrazione richiesta di aggiunta skill ok   
 	    	( statelessBeanSkillreq.createSkillrequest(mak_id, mak_date, message) )

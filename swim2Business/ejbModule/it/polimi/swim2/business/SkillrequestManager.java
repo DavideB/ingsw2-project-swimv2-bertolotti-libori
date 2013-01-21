@@ -51,7 +51,19 @@ public class SkillrequestManager implements StatelessEJBSkillrequest {
 	    }
 	    return toReturn;
 	  }
-   
+
+	
+	public List<Newabilityrequest> getUnansweredSkillrequests(Date mak_date) {
+	    ArrayList<Newabilityrequest> toReturn = new ArrayList<Newabilityrequest>();
+	    Query q = em.createNamedQuery("Newabilityrequest.findUnanswered");
+	    q.setParameter("mak_date", mak_date);
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Newabilityrequest) po);
+	    }
+	    return toReturn;
+	  }
+	
+	
   public Newabilityrequest getSkillrequest(int mak_id) {
 	  Query q = em.createNamedQuery("Newabilityrequest.findById").setParameter("id", mak_id);
 	  List toReturn = q.getResultList();  

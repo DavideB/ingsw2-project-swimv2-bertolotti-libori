@@ -56,6 +56,7 @@ public class ListSkills extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	                    throws ServletException, IOException {
 		  init();
+		  request.getSession().setAttribute("error", "");
 		  //request.getSession().setAttribute("resultlist", null);
 		  //displaySkills(response);
 		  listSkills(response);

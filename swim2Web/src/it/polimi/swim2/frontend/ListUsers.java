@@ -56,6 +56,7 @@ public class ListUsers extends HttpServlet {
 	                    throws ServletException, IOException {
 	    //displayPeople(response);
 		  request.getSession().setAttribute("out", null);
+		  request.getSession().setAttribute("error", "");
 		  listPeople(response);
 		  request.getSession().setAttribute("out", out);
 		  request.getRequestDispatcher("services/list.jsp").forward(request, response);
