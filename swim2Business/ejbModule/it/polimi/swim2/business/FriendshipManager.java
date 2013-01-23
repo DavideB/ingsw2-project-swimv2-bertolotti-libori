@@ -1,11 +1,13 @@
 package it.polimi.swim2.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessFriendshipBean;
 import it.polimi.swim2.persistence.Friendshiprequest;
 import it.polimi.swim2.persistence.Registered;
+import it.polimi.swim2.persistence.Skill;
 import it.polimi.swim2.persistence.User;
 
 import javax.ejb.Remote;
@@ -30,8 +32,21 @@ public class FriendshipManager implements StatelessFriendshipBean {
     }
 
 	@Override
-	public List<User> getAllFriends() {
-		// TODO Auto-generated method stub
+	public List<Registered> getAllFriends(Registered r) {
+		Query q = em.createNamedQuery("Friendshiprequest.getRespondents"); 
+		Query q1 = em.createNamedQuery("Friendshiprequest.getAskers"); 
+		q.setParameter("id", r.getId());
+		q1.setParameter("id", r.getId());
+		List tmp = q.getResultList();  
+		List<Registered> toReturn = new ArrayList<Registered>();
+		if (tmp != null) tmp.addAll(q1.getResultList());
+		else tmp = q1.getResultList();
+	    if (tmp != null && !tmp.isEmpty()) { 
+	    	for (Object s : q.getResultList()) {
+	    		toReturn.add((Registered) s);
+		    }
+	    	return toReturn;
+	    }
 		return null;
 	}
 

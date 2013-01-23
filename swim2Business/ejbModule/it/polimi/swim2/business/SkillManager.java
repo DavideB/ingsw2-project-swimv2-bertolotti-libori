@@ -26,9 +26,7 @@ public class SkillManager implements StatelessEJBSkill {
     /**
      * Default constructor. 
      */
-    public SkillManager() {
-        // TODO Auto-generated constructor stub
-    }
+    public SkillManager() {}
 
 	/**
      * @see StatelessSkillBean#getAllSkills()
@@ -37,6 +35,17 @@ public class SkillManager implements StatelessEJBSkill {
     public List<Skill> getAllSkills() {
     	ArrayList<Skill> toReturn = new ArrayList<Skill>();
     	Query q = em.createNamedQuery("Skill.findAll"); 
+    	for (Object s : q.getResultList()) {
+    		toReturn.add((Skill) s);
+	    }
+	    return toReturn;
+    }
+    
+    @Override
+    public List<Skill> getAllOtherSkills(Registered r) {
+    	ArrayList<Skill> toReturn = new ArrayList<Skill>();
+    	Query q = em.createNamedQuery("RegisteredSkill.findOtherSkills"); 
+    	q.setParameter("id", r.getId());
     	for (Object s : q.getResultList()) {
     		toReturn.add((Skill) s);
 	    }

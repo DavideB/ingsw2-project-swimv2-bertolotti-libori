@@ -10,7 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name="RegisteredSkill.findUserSkills",query="SELECT s FROM Skill s, RegisteredSkill r where r.id.skillId = s.id and r.id.id = :id")
+	@NamedQuery(name="RegisteredSkill.findUserSkills",query="SELECT s FROM Skill s, RegisteredSkill r where r.id.skillId = s.id and r.id.id = :id"),
+	@NamedQuery(name="RegisteredSkill.findOtherSkills",query="select s1 from Skill s1 where s1.id not in (SELECT s.id FROM Skill s, RegisteredSkill r where r.id.skillId = s.id and r.id.id <> :id)")
 })
 public class RegisteredSkill implements Serializable {
 	private static final long serialVersionUID = 1L;

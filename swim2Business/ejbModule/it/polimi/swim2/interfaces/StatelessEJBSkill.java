@@ -17,4 +17,5 @@ public interface StatelessEJBSkill {
 	public Skill getSkill(int id);
 	public Skill getSkill(String name);
 	List<Skill> getUserSkills(Registered r);
+	List<Skill> getAllOtherSkills(Registered r);
 }

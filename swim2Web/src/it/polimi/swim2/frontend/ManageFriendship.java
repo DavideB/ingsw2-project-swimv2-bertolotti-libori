@@ -2,6 +2,7 @@ package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessFriendshipBean;
+import it.polimi.swim2.persistence.Registered;
 
 import java.io.IOException;
 
@@ -51,14 +52,14 @@ public class ManageFriendship extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = (String) request.getSession().getAttribute("username");
+		Registered r = (Registered) request.getSession().getAttribute("userData");
 		//controlla che l'accesso sia stato effettuato
-		if (username==null) {
+		if (r==null) {
 			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-		request.getSession().setAttribute("friends", friendship.getAllFriends());
+		request.getSession().setAttribute("friends", friendship.getAllFriends(r));
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Amicizia.jsp").forward(request, response);
 		return;
 	}

@@ -55,9 +55,10 @@ public class SendFriendshipRequest extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
+		String message = request.getParameter("message");
 		int target = Integer.parseInt(request.getParameter("target"));
-		String message = "ciao, diventiamo amici?";
 		friendship.addFriend(target, statelessBean.getUserData((String)request.getSession().getAttribute("username")).getId(), message);
+		response.sendRedirect("ManageFriendship");
 	}
 
 	/**

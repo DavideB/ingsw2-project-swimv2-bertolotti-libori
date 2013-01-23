@@ -8,7 +8,7 @@ public class RegisteredUserDecorator extends TableDecorator {
 	
 	public String getFriendshipLink() {
 		Registered r = (Registered)getCurrentRowObject();
-		String link = "<a href=\"SendFriendshipRequest?target="+r.getId()+"\">"+"Invia Amicizia"+ "</a>";
+		String link = "<a href=\"#\" onclick=\"openPopUp(this, "+ r.getId()+")\">"+"Invia Amicizia"+ "</a>";
 		return link;
 	}
 	
