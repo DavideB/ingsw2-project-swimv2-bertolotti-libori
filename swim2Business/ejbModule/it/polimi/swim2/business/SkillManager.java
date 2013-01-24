@@ -107,7 +107,8 @@ public class SkillManager implements StatelessEJBSkill {
     }
 
     public Skill getSkill(String name) {
-  	  Query q = em.createNamedQuery("Skill.findSkillByName").setParameter("name", name);
+  	  Query q = em.createNamedQuery("Skill.findSkillByName");
+  	  q.setParameter("name", name);
   	  List toReturn = q.getResultList();  
         if (toReturn != null && !toReturn.isEmpty())
       	  return (Skill) toReturn.get(0);

@@ -40,15 +40,18 @@
 		    		</div>
 		    		<div class="row-fluid">
 					<div class="span8">
-						<form name="modUserData" action="SendNewHelpRequest" method="post">
+						<form name="modUserData" action="SendHelpRequest" method="post">
 							<div class="row">
 								<div class="span4">Seleziona l'abilità di cui hai bisogno</div>
 								<div class="span8">
-									<select name="skill" id="skill">
+									<select name="skillname" id="skillname">
 										<%for (Skill curr : (List<Skill>)request.getAttribute("availableSkills") ) { %>
 											<option value=<%= curr.getName() %>><%= curr.getName() %></option>
 											<% } %>
 									</select>
+									<div>
+										<input type="checkbox" name="isForFriend"> Vuoi chiedere aiuto solo ai tuoi amici?</input>
+									</div>
 								</div>
 							</div>
 							<div class="row">

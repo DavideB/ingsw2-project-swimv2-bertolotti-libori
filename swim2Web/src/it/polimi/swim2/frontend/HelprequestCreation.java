@@ -76,7 +76,7 @@ public class HelprequestCreation extends HttpServlet {
     	String email = request.getParameter("email");
     	String skillname = request.getParameter("skillname");
     	String descr = request.getParameter("descr");
-    	byte isForFriend = Byte.parseByte("1");
+    	byte isForFriend = Byte.parseByte("0");
     	int sen_id = statelessBean.getUser(email).getId();
 
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");

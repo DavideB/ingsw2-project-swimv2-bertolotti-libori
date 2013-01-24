@@ -234,4 +234,14 @@
     <servlet-name>ManageHelpRequest</servlet-name>
     <url-pattern>/ManageHelpRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendHelpRequest</display-name>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SendHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <url-pattern>/SendHelpRequest</url-pattern>
+  </servlet-mapping>
 </web-app>
