@@ -66,7 +66,6 @@ public class HelprequestCreation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		init();
 		String username = (String) request.getSession().getAttribute("username");
 		String email = (String) request.getSession().getAttribute("email");
 		//controlla che l'accesso sia stato effettuato
