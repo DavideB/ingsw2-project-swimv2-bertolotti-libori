@@ -19,12 +19,13 @@
 		if (displayRow != -1) {
 			table.deleteRow(displayRow);
 		}
-		var target = document.getElementById("target");
-		target.value = val;
+		//var target = document.getElementById("target");
+		//target.value = val;
 		displayRow = el.parentNode.parentNode.rowIndex + 1;
 		var row = table.insertRow(el.parentNode.parentNode.rowIndex + 1);
 		row.innerHTML = "<label for=\"message\" value=\"inserisci qui il tuo messaggio\"><input type=\"text\" name=\"message\"/>"
-				+ "<input type=\"submit\">Invia </input>";
+				+ "<input type=\"text\" id=\"target\" value=\""+val+"\"/>"+
+				"<input type=\"submit\">Invia </input>";
 
 	}
 </script>
@@ -46,9 +47,8 @@
 								<display:column property="surname" title="cognome" />
 								<display:column property="friendshipLink"
 									title="richiesta amicizia" />
-								<display:column property="helpReqLink" title="richiesta d'aiuto" />
 							</display:table>
-							<input type="text" id="target" />
+							
 						</form>
 					</div>
 				</div>

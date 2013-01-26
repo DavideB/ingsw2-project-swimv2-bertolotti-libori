@@ -11,10 +11,4 @@ public class RegisteredUserDecorator extends TableDecorator {
 		String link = "<a href=\"#\" onclick=\"openPopUp(this, "+ r.getId()+")\">"+"Invia Amicizia"+ "</a>";
 		return link;
 	}
-	
-	public String getHelpReqLink() {
-		Registered r = (Registered)getCurrentRowObject();
-		String link = "<a href=\"SendHelpRequest?target="+r.getId()+"\">"+"Chiedi Aiuto"+ "</a>";
-		return link;
-	}
 }

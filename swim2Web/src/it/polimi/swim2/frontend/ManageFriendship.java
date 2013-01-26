@@ -59,7 +59,8 @@ public class ManageFriendship extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-		request.getSession().setAttribute("friends", friendship.getAllFriends(r));
+		request.setAttribute("friends", friendship.getAllFriends(r));
+		request.setAttribute("requests", friendship.getAllRequests(r.getId()));
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Amicizia.jsp").forward(request, response);
 		return;
 	}

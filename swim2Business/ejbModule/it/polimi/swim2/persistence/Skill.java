@@ -14,7 +14,9 @@ import java.util.Date;
 @Table(name="SKILL")
 @NamedQueries({
 	@NamedQuery(name="Skill.findAll",
-	query="SELECT s FROM Skill s"),
+			query="SELECT s FROM Skill s"),
+	@NamedQuery(name="Skill.findAllRegistered",
+	query="SELECT distinct s FROM Skill s, RegisteredSkill rs where s.id in (select rs.id.skillId from RegisteredSkill rs)"),
 	@NamedQuery(name="Skill.findSkillById",
 	query="SELECT s FROM Skill s where s.id = :id"),
 	@NamedQuery(name="Skill.findSkillByName",

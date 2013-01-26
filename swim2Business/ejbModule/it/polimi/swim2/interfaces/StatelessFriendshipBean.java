@@ -1,5 +1,6 @@
 package it.polimi.swim2.interfaces;
 
+import it.polimi.swim2.persistence.Friendshiprequest;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.User;
 
@@ -13,4 +14,6 @@ public interface StatelessFriendshipBean {
 	void acceptFriendship(String email);
 	void addFriend(int targetId, int myId, String message);
 	List<Registered> getAllFriends(Registered r);
+	public void removeFriend(int target);
+	List<Friendshiprequest> getAllRequests(int target);
 }

@@ -244,4 +244,14 @@
     <servlet-name>SendHelpRequest</servlet-name>
     <url-pattern>/SendHelpRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveFriend</display-name>
+    <servlet-name>RemoveFriend</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.RemoveFriend</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveFriend</servlet-name>
+    <url-pattern>/RemoveFriend</url-pattern>
+  </servlet-mapping>
 </web-app>

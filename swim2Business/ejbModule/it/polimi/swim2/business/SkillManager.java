@@ -116,4 +116,14 @@ public class SkillManager implements StatelessEJBSkill {
         return null;
     }
 
+	@Override
+	public List<Skill> getAllRegSkills() {
+		ArrayList<Skill> toReturn = new ArrayList<Skill>();
+    	Query q = em.createNamedQuery("Skill.findAllRegistered"); 
+    	for (Object s : q.getResultList()) {
+    		toReturn.add((Skill) s);
+	    }
+	    return toReturn;
+	}
+
 }

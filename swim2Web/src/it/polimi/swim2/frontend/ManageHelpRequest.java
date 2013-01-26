@@ -57,7 +57,7 @@ public class ManageHelpRequest extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-		List<Skill> availableSkills = skills.getAllSkills();
+		List<Skill> availableSkills = skills.getAllRegSkills();
 		request.setAttribute("availableSkills",  availableSkills);
 		request.getSession().setAttribute("friendsRequests", helprequests.getYourFriendsHelprequests(user));
 		request.getSession().setAttribute("othersRequests", helprequests.getOthersHelprequests(user));		
