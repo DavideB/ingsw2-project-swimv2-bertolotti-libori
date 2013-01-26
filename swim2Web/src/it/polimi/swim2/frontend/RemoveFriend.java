@@ -53,8 +53,10 @@ public class RemoveFriend extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-		int target = Integer.parseInt(request.getParameter("target"));
-		friendship.removeFriend(target);
+		int targetId= Integer.parseInt(request.getParameter("target"));
+		friendship.removeFriend(user.getId(), targetId);
+		response.sendRedirect("ManageFriendship");
+		return;
 	}
 
 	/**

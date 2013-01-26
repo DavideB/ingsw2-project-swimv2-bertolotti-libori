@@ -23,9 +23,9 @@
 		//target.value = val;
 		displayRow = el.parentNode.parentNode.rowIndex + 1;
 		var row = table.insertRow(el.parentNode.parentNode.rowIndex + 1);
-		row.innerHTML = "<label for=\"message\" value=\"inserisci qui il tuo messaggio\"><input type=\"text\" name=\"message\"/>"
-				+ "<input type=\"text\" id=\"target\" value=\""+val+"\"/>"+
-				"<input type=\"submit\">Invia </input>";
+		row.innerHTML = "<label for=\"message\" value=\"inserisci qui il tuo messaggio\"/><input type=\"text\" name=\"message\"/>"
+				+ "<input type=\"text\" id=\"target\" name=\"target\" value=\""+val+"\"/>"+
+				"<input type=\"submit\" value=\"invia\"/>";
 
 	}
 </script>

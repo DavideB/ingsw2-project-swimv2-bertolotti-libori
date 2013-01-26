@@ -24,26 +24,26 @@ public class FriendshipDecorator extends TableDecorator  {
 
 	public String getRemoveLink() {
 		Registered r = (Registered)getCurrentRowObject();
-		String link = "<a href=\"RemoveFriend?target="+r.getId()+"\">"+"Aggiungi questa abilità al tuo curriculum"+ "</a>";
+		String link = "<a href=\"RemoveFriend?target="+r.getId()+"\">"+"elimina"+ "</a>";
 		return link;
 	}
 	
 	public String getAcceptLink() {
 		Friendshiprequest f = (Friendshiprequest)getCurrentRowObject();
-		String link = "<a href=\"#\">"+"accetta"+ "</a>";
+		String link = "<a href=\"AnswerToFriendshipRequest?target="+f.getId()+"&action=accept"+"\">"+"accetta"+ "</a>";
 		return link;
 	}
 	
 	public String getRejectLink() {
 		Friendshiprequest f = (Friendshiprequest)getCurrentRowObject();
-		String link = "<a href=\"#\">"+"rifiuta"+ "</a>";
+		String link = "<a href=\"AnswerToFriendshipRequest?target="+f.getId()+"&action=reject"+"\">"+"rifiuta"+ "</a>";
 		return link;
 	}
 	
 
 	public String getSender() {
 		Friendshiprequest f = (Friendshiprequest)getCurrentRowObject();
-		String email = statelessBean.getUser(f.getSent_id()).getEmail();
+		String email = statelessBean.getUserDataFromRegId(f.getSent_id()).getEmail();
 		return email;
 	}
 

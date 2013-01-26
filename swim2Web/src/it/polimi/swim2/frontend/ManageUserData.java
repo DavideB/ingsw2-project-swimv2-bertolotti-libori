@@ -49,6 +49,11 @@ public class ManageUserData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String userName=(String) request.getSession().getAttribute("username");
+		if (userName==null) {
+			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
+			response.sendRedirect("access/home.jsp");
+			return;
+		}
 		Registered  r = statelessBean.getUserData(userName);
 		List<Registered> l = new ArrayList<Registered>();
 		l.add(r); 

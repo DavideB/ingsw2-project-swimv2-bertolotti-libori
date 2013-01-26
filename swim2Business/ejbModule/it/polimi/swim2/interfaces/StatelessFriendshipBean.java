@@ -11,9 +11,10 @@ import javax.ejb.Remote;
 @Remote
 public interface StatelessFriendshipBean {
 	public void removeFriend(String email);
-	void acceptFriendship(String email);
-	void addFriend(int targetId, int myId, String message);
+	void addFriend(int targetId, int myId, String message) throws Exception;
 	List<Registered> getAllFriends(Registered r);
-	public void removeFriend(int target);
 	List<Friendshiprequest> getAllRequests(int target);
+	void rejectFriendship(int reqId);
+	public void acceptFriendship(int target);
+	void removeFriend(int myId, int targetId);
 }

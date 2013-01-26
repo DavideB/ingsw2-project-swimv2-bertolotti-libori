@@ -151,6 +151,17 @@ public class UserManager implements StatelessEJB {
       return null;
   }
   
+  @Override
+  public User getUserDataFromRegId(int id) {
+	  Registered reg = em.find(Registered.class,id);
+	  Query q = em.createNamedQuery("User.findUserById").setParameter("id", reg.getUser_id());
+	  List toReturn = q.getResultList();  
+      if (toReturn != null && !toReturn.isEmpty())
+    	  return (User) toReturn.get(0);
+      
+      return null;
+  }
+  
   public Registered getRegistered(int user_id) {
 	  Query q = em.createNamedQuery("Registered.findRegistered").setParameter("user_id", user_id);
 	  List toReturn = q.getResultList();  

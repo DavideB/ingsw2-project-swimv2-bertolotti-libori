@@ -27,8 +27,8 @@
 						<display:table name="requests" decorator="it.polimi.swim2.decorators.FriendshipDecorator">
 								<display:column property="sender" title="autore" />
 								<display:column property="message" title="messaggio" />
-								<display:column property="acceptLink" />
-								<display:column property="acceptLink"/>
+								<display:column property="acceptLink" title=""/>
+								<display:column property="rejectLink" title=""/>
 									
 						</display:table>
 						Di seguito sono visualizzati i tuoi amici

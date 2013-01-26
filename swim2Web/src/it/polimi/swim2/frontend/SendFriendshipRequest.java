@@ -48,17 +48,23 @@ public class SendFriendshipRequest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = (String) request.getSession().getAttribute("username");
+		Registered user = (Registered) request.getSession().getAttribute("userData");
 		//controlla che l'accesso sia stato effettuato
-		if (username==null) {
+		if (user==null) {
 			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
 		String message = request.getParameter("message");
 		int target = Integer.parseInt(request.getParameter("target"));
-		friendship.addFriend(target, statelessBean.getUserData((String)request.getSession().getAttribute("username")).getId(), message);
-		response.sendRedirect("ManageFriendship");
+		try {
+			friendship.addFriend(target, user.getId(), message);
+		} catch (Exception e) {
+			request.getSession().setAttribute("error",e.getMessage());
+			response.sendRedirect("error.jsp");
+			return;
+		}
+		response.sendRedirect("SearchForUser");
 	}
 
 	/**

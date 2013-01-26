@@ -13,9 +13,10 @@ import java.util.Date;
 @Entity
 @Table(name="FRIENDSHIPREQUEST")
 @NamedQueries( {
+	@NamedQuery(name="Friendshiprequest.getFriendsRequests", query="Select f from Friendshiprequest f where f.ans_id = :id and f.ansdate is not null" ),
 	@NamedQuery(name="Friendshiprequest.getRequests", query="Select f from Friendshiprequest f where f.ans_id = :id and f.ansdate is null" ),
 	@NamedQuery(name="Friendshiprequest.getFriends1", query="Select r from Friendshiprequest f, Registered r where r.id = f.ans_id and f.sent_id = :id and f.ansdate is not null" ),
-	@NamedQuery(name="Friendshiprequest.getFriends2", query="Select r from Friendshiprequest f, Registered r where r.id = f.ans_id and f.sent_id = :id and f.ansdate is not null" ),
+	@NamedQuery(name="Friendshiprequest.getFriends2", query="Select r from Friendshiprequest f, Registered r where f.sent_id=r.id and f.ans_id=:id and f.ansdate is not null" ),
 	@NamedQuery(name="Friendshiprequest.getRespondents", query="Select r from Friendshiprequest f, Registered r where r.id = f.ans_id and f.sent_id = :id and f.ansdate is null" ),
 	@NamedQuery(name="Friendshiprequest.getAskers", query="Select r from Friendshiprequest f, Registered r where :id = f.ans_id and f.sent_id = r.id and f.ansdate is null" )
 	//,@NamedQuery(name="Friendshiprequest.accept", query="update Friendshiprequest set ")

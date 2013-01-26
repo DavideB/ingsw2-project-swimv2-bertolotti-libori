@@ -30,4 +30,5 @@ public interface StatelessEJB {
 	public List<RegisteredJoinUser> getAllRegisteredJoinUser();
 	void changeImg(Registered r, String url);
 	List<Registered> getAllOtherRegistered(String email);
+	User getUserDataFromRegId(int id);
 }

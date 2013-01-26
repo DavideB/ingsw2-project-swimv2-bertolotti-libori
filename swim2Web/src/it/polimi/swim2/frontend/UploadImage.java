@@ -22,6 +22,7 @@ import com.oreilly.servlet.MultipartRequest;
 public class UploadImage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StatelessEJB statelessBean;
+	String baseDir = System.getProperty("jboss.server.home.dir")+"/deploy/ROOT.war/swim2images/";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -58,13 +59,13 @@ public class UploadImage extends HttpServlet {
 		//recupera l'url dell'immagine
 		String img = request.getParameter("newImage");
 		//prepara il path nel quale salvare l'immagine
-		String myPath = request.getSession().getServletContext().getRealPath("/img/users")+request.getSession().getAttribute("username")+"/";
+		String myPath = request.getSession().getAttribute("username")+"/";
 		//controlla se c'è la cartella e nel caso la crea
-		File folder = new File(myPath);
+		File folder = new File(baseDir+myPath);
 		if (!folder.exists()) {
 			try {
 				if (!folder.mkdir()) {
-					request.getSession().setAttribute("error","Impossibile effettuare l'upload dell'immagine: si consiglia di provare più tardi");
+					request.getSession().setAttribute("error","Impossibile effettuare l'upload dell'immagine: si consiglia di provare più tardi"+baseDir+myPath);
 					response.sendRedirect("error.jsp");
 					return;
 				}
@@ -76,10 +77,10 @@ public class UploadImage extends HttpServlet {
 		}
 		System.err.println(myPath);
 		//salva il file, la qui dimensione massima in byte è definita nel terzo campo parametro
-		MultipartRequest multiReq = new MultipartRequest(request, myPath, 4*1000*1000);
+		MultipartRequest multiReq = new MultipartRequest(request, baseDir+myPath, 4*1000*1000);
 		//salva l'url nel database
 		String[] tokens = multiReq.getOriginalFileName("newImage").split("/");
-		String imgUrl = myPath+tokens[tokens.length-1];
+		String imgUrl = "localhost:8080/swim2images/"+myPath+tokens[tokens.length-1];
 		Registered r = statelessBean.getUserData((String)request.getSession().getAttribute("username"));
 		statelessBean.changeImg(r, imgUrl);
 		response.sendRedirect("ManageUserData");

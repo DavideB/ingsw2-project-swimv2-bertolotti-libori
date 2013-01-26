@@ -45,8 +45,8 @@ public class FriendshipManager implements StatelessFriendshipBean {
 		else
 			tmp = q1.getResultList();
 		if (tmp != null && !tmp.isEmpty()) {
-			for (Object s : q.getResultList()) {
-				//controlla che la richiesta sia stata effettivamente accettata
+			for (Object s : tmp) {
+				// controlla che la richiesta sia stata effettivamente accettata
 				toReturn.add((Registered) s);
 			}
 			return toReturn;
@@ -55,21 +55,26 @@ public class FriendshipManager implements StatelessFriendshipBean {
 	}
 
 	@Override
-	public void addFriend(int targetId, int myId, String message) {
-		Query q = em.createNamedQuery("Registered.find");
-		q.setParameter("id", targetId);
-		List toReturn = q.getResultList();
-		if (toReturn != null && !toReturn.isEmpty()) {
-			Registered r = (Registered) toReturn.get(0);
-			Friendshiprequest f = new Friendshiprequest();
-			f.setSent_id(myId);
-			java.sql.Date sqlDate = new java.sql.Date(
-					new java.util.GregorianCalendar().getTimeInMillis());
-			f.setSentdate(sqlDate);
-			f.setAns_id(r.getId());
-			f.setMessage(message);
-			em.persist(f);
+	public void addFriend(int targetId, int myId, String message) throws Exception {
+		Registered me = em.find(Registered.class, myId);
+		Registered you = em.find(Registered.class, targetId);
+		List<Registered> friends = getAllFriends(me);
+		if (friends!=null && friends.contains(you)) throw new Exception("Siete già amici!");
+		//controlla che tu non abbia già inviato una richiesta d'amicizia
+		List<Friendshiprequest> fr = getAllRequests(you.getId());
+		if (fr!=null) {
+			for (Friendshiprequest tmp : fr) {
+				if (tmp.getSent_id()==myId) throw new Exception("Non puoi inviare più di una richiesta d'amicizia alla stessa persona!");
+			}
 		}
+		Friendshiprequest f = new Friendshiprequest();
+		f.setSent_id(myId);
+		java.sql.Date sqlDate = new java.sql.Date(
+				new java.util.GregorianCalendar().getTimeInMillis());
+		f.setSentdate(sqlDate);
+		f.setAns_id(you.getId());
+		f.setMessage(message);
+		em.persist(f);
 		return;
 	}
 
@@ -101,54 +106,44 @@ public class FriendshipManager implements StatelessFriendshipBean {
 	}
 
 	@Override
-	public void acceptFriendship(String email) {
-		Query q = em.createNamedQuery("Registered.getUserData");
-		q.setParameter("email", email);
-		List toReturn = q.getResultList();
-		if (toReturn != null && !toReturn.isEmpty()) {
-			Registered r = (Registered) toReturn.get(0);
-			Query q1 = em.createNamedQuery("Friendshiprequest.getAskers");
-			q1.setParameter("id", r.getId());
-			List toRet = q.getResultList();
-			if (toRet != null && !toReturn.isEmpty()) {
-				Friendshiprequest f = (Friendshiprequest) toRet.get(0);
-				java.sql.Date sqlDate = new java.sql.Date(
-						new java.util.GregorianCalendar().getTimeInMillis());
-				f.setAnsdate(sqlDate);
+	public void rejectFriendship(int reqId) {
+		em.remove(em.find(Friendshiprequest.class, reqId));
+	}
+
+	@Override
+	public void acceptFriendship(int target) {
+		Friendshiprequest f = (Friendshiprequest) em.find(
+				Friendshiprequest.class, target);
+		java.sql.Date sqlDate = new java.sql.Date(
+				new java.util.GregorianCalendar().getTimeInMillis());
+		f.setAnsdate(sqlDate);
+		return;
+	}
+
+	@Override
+	public void removeFriend(int myId, int targetId) {
+		Query q1 = em.createNamedQuery("Friendshiprequest.getFriendsRequests");
+		q1.setParameter("id", myId);
+		for (Object o : q1.getResultList()) {
+			Friendshiprequest f = (Friendshiprequest) o;
+			if ( (f.getAns_id()==myId && f.getSent_id()==targetId) | (f.getAns_id()==targetId && f.getSent_id()==myId)) {
+				em.remove(f);
 				return;
 			}
-		}
-	}
 
-	@Override
-	public void removeFriend(int target) {
-		Query q1 = em.createNamedQuery("Friendshiprequest.getRespondents");
-		q1.setParameter("id",target);
-		List toRet = q1.getResultList();
-		if (toRet != null && !toRet.isEmpty()) {
-			Friendshiprequest f = (Friendshiprequest) toRet.get(0);
-			em.remove(f);
-			return;
-		}
-		q1 = em.createNamedQuery("Friendshiprequest.getAskers");
-		q1.setParameter("id", target);
-		toRet = q1.getResultList();
-		if (toRet != null && !toRet.isEmpty()) {
-			Friendshiprequest f = (Friendshiprequest) toRet.get(0);
-			em.remove(f);
 		}
 
 	}
 
 	@Override
-	public List<Friendshiprequest> getAllRequests( int target) {
+	public List<Friendshiprequest> getAllRequests(int target) {
 		ArrayList<Friendshiprequest> toReturn = new ArrayList<Friendshiprequest>();
-    	Query q = em.createNamedQuery("Friendshiprequest.getRequests"); 
-    	q.setParameter("id", target);
-    	for (Object s : q.getResultList()) {
-    		toReturn.add((Friendshiprequest) s);
-	    }
-	    return toReturn;
+		Query q = em.createNamedQuery("Friendshiprequest.getRequests");
+		q.setParameter("id", target);
+		for (Object s : q.getResultList()) {
+			toReturn.add((Friendshiprequest) s);
+		}
+		return toReturn;
 	}
 
 }
