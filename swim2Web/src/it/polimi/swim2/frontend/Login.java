@@ -67,8 +67,8 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("email", username);
 			request.getSession().setAttribute("userData", r);			
-			request.getRequestDispatcher("WEB-INF/registered/home.jsp").forward(request, response);
-			//request.getRequestDispatcher("services/reg.jsp").forward(request, response);
+			response.sendRedirect("ManageUserData");
+//request.getRequestDispatcher("services/reg.jsp").forward(request, response);
 			return;
 		}
 		//controlla se è un admin

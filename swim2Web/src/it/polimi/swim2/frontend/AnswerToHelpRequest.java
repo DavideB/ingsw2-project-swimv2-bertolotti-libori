@@ -3,11 +3,14 @@ package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessEJBHelprequest;
-import it.polimi.swim2.interfaces.StatelessEJBSkill;
+import it.polimi.swim2.interfaces.StatelessEJBSatisfiedhelprequest;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.Skill;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.naming.Context;
@@ -23,11 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AnswerToHelpRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private StatelessEJBHelprequest helprequests;
-    StatelessEJBSkill skills;
 	private StatelessEJB statelessBean;
-	private StatelessEJBSkill statelessBeanSkill;
-	private StatelessEJBHelprequest statelessBeanHelprequest;  
+	private StatelessEJBHelprequest helprequests;
+	private StatelessEJBSatisfiedhelprequest statelessBeanSatisfiedhelprequest;  
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -42,9 +43,8 @@ public class AnswerToHelpRequest extends HttpServlet {
     	super.init();
     	try {
 	    	
-  	      Context context = new InitialContext();
-  	      helprequests = (StatelessEJBHelprequest) context.lookup("swim2/HelprequestManager/remote");
-  	      skills = (StatelessEJBSkill) context.lookup("swim2/SkillManager/remote");
+  	     Context context = new InitialContext();
+  	     statelessBeanSatisfiedhelprequest = (StatelessEJBSatisfiedhelprequest) context.lookup("swim2/SatisfiedhelprequestManager/remote");
 
   	    } catch (NamingException e) {
   	      e.printStackTrace();
@@ -64,17 +64,30 @@ public class AnswerToHelpRequest extends HttpServlet {
 		
 		String ans = request.getParameter("message");
 		int reqId = Integer.parseInt(request.getParameter("reqId"));
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    	Date date = Calendar.getInstance().getTime();
+    	helprequests.setAnsDate(reqId);
+	    if 	//registrazione Satisfiedhelprequest ok    
+	    	( statelessBeanSatisfiedhelprequest.createSatisfiedhelprequest(reqId, date, 0) )
+		    {
+		    	response.sendRedirect("ManageHelpRequest");
+		    	return;
+		    }
+	    
+	    else//registrazione Satisfiedhelprequest fallita 
+	    	{
+	    		request.getSession().setAttribute("error","Creation Satisfiedhelprequest failed. Please verify data.\n");
 		
-			
-    	request.getRequestDispatcher("WEB-INF/registered/Gestione Richieste d'aiuto.jsp").forward(request, response);
-    	return;
+	    		request.getRequestDispatcher("WEB-INF/registered/Gestione Richieste d'aiuto.jsp").forward(request, response);
+	    		return;
+	    	}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	doGet(request, response);	
 	}
 	
 	

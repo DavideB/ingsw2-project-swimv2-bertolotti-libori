@@ -47,6 +47,14 @@
 			<%@ include file="header.jsp"%>
 		</div>
 		<div class="span8 offset2">
+			<div class="span6" >
+				Benvenuto <%= session.getAttribute("username") %>
+			</div>
+			<div class="span6" >
+				<jsp:include page="profileimage.jsp"/> 
+			</div>
+		</div>
+		<div class="span8 offset2">
 
 
 			<div id="main">
@@ -61,37 +69,8 @@
 				</div>
 
 				<div class="row-fluid">
-					<div class="span8">
-						<form name="modUserData" action="ModifyUserData" method="post"
-							onsubmit="return checkPwd(this);">
-							<div class="row">
-								<div class="span4">Vecchia Password</div>
-								<div class="span8">
-									<input name="oldPwd" type="password">
-								</div>
-							</div>
-							<div class="row">
-								<div class="span4">Conferma vecchia Password</div>
-								<div class="span8">
-									<input name="confirmOldPwd" type="password">
-								</div>
-							</div>
-							<div class="row">
-								<div class="span4">Nuova Password</div>
-								<div class="span8">
-									<input name="newPwd" type="password">
-								</div>
-							</div>
-							<div class="row">
-								<div class="span4">Conferma nuova Password</div>
-								<div class="span8">
-									<input name="confirmNewPwd" type="password">
-								</div>
-							</div>
-							<div class="span12">
-								<input type="submit" value="Conferma">
-							</div>
-						</form>
+					<div class="span8 offset2">
+						
 
 						<form enctype="multipart/form-data" action="UploadImage"
 							method="post">
@@ -102,10 +81,6 @@
 							</div>
 						</form>
 
-					</div>
-					<div class="span4">
-						<!-- qui verrà visualizzata l'immagine del profilo -->
-						<%@ include file="profileimage.jsp"%>
 					</div>
 				</div>
 			</div>

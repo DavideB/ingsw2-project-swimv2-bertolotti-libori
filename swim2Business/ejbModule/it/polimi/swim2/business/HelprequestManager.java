@@ -54,6 +54,13 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 		em.persist(Helprequest);
 		return true;
 	}
+	
+	@Override
+	public void setAnsDate( int req_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+    	Date date = Calendar.getInstance().getTime();
+    	em.find(Helprequest.class, req_id).setAnsdate(date);
+	}
 
 	public List<Helprequest> getAllHelprequests() {
 		ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
@@ -105,16 +112,26 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 		return toReturn;
 	}
 
+	@Override
+	public List<Helprequest> getOthersHelprequests(Registered r) {
+		ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+		Query q = em.createNamedQuery("Helprequest.findOthersRequests")
+				.setParameter("id", r.getId());
+		for (Object po : q.getResultList()) {
+			toReturn.add((Helprequest) po);
+		}
+		return toReturn;
+	}
 
-  @Override
-  public List<Helprequest> getOthersHelprequests(Registered r) {
-          ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
-          Query q = em.createNamedQuery("Helprequest.findOthersRequests")
-                          .setParameter("id", r.getId());
-          for (Object po : q.getResultList()) {
-                  toReturn.add((Helprequest) po);
-          }
-          return toReturn;
-  }
+	@Override
+	public List<Helprequest> getSatisfied(Registered r) {
+		ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+		Query q = em.createNamedQuery("Helprequest.getSatisfied")
+				.setParameter("id", r.getId());
+		for (Object po : q.getResultList()) {
+			toReturn.add((Helprequest) po);
+		}
+		return toReturn;
+	}
 
 }

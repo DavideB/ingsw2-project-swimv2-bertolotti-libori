@@ -17,10 +17,19 @@
 </head>
 <body>
 	<div class=row-fluid>
+		<div class="span12" id="header">
+			<%@ include file="header.jsp"%>
+		</div>
 		<div class="span8 offset2">
-			<div id="header">
-				<%@ include file="header.jsp"%>
+			<div class="span6" >
+				Benvenuto <%= session.getAttribute("username") %>
 			</div>
+			<div class="span6" >
+				<jsp:include page="profileimage.jsp"/> 
+			</div>
+		</div>
+		<div class="span8 offset2">
+
 
 			<div id="main">
 				<div class="row">
@@ -43,21 +52,19 @@
 				</div>
 				<div class="row-fluid">
 					<div class="span8">
-						<form name="modUserData" action="SendNewAbilityRequest"
-							method="post">
-							<form name="modUserData" action="NewSkillrequest" method="post">
-								<div class="row">
-									<div class="span4">Inserisci il nome della nuova abilità
-									</div>
-									<!-- e una breve descrizione dei motivi che ti spingono a richiederla. La richiesta sarà vagliata dall'ammistratore di sistema appena possibile.</div> -->
-									<input type="hidden" name="email"
-										value=<%=(String) session.getAttribute("email")%>>
-								</div>
-								<div class="span8">
-									<input name="skillrequest" type="text">
-								</div>
+						<form name="modUserData" action="NewSkillrequest" method="post">
+							<div class="row">
+								<div class="span4">Inserisci il nome della nuova abilità</div>
+								<!-- e una breve descrizione dei motivi che ti spingono a richiederla. La richiesta sarà vagliata dall'ammistratore di sistema appena possibile.</div> -->
+								<input type="hidden" name="email"
+									value=<%=(String) session.getAttribute("email")%>>
+							</div>
+							<div class="span8">
+								Descrizione richiesta: <input type="text" name="skillrequest" />
+								<input type="submit" value="Send" />
+							</div>
+						</form>
 					</div>
-					</form>
 				</div>
 				<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->

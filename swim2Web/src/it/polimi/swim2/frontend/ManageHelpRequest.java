@@ -2,6 +2,7 @@ package it.polimi.swim2.frontend;
 
 import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessEJBHelprequest;
+import it.polimi.swim2.interfaces.StatelessEJBSatisfiedhelprequest;
 import it.polimi.swim2.interfaces.StatelessEJBSkill;
 import it.polimi.swim2.persistence.Registered;
 import it.polimi.swim2.persistence.Skill;
@@ -24,6 +25,8 @@ public class ManageHelpRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private StatelessEJBHelprequest helprequests;
     StatelessEJBSkill skills;
+	private StatelessEJBSatisfiedhelprequest statelessBeanSatisfiedhelprequest;  
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,6 +44,7 @@ public class ManageHelpRequest extends HttpServlet {
   	      Context context = new InitialContext();
   	      helprequests = (StatelessEJBHelprequest) context.lookup("swim2/HelprequestManager/remote");
   	      skills = (StatelessEJBSkill) context.lookup("swim2/SkillManager/remote");
+    	  statelessBeanSatisfiedhelprequest = (StatelessEJBSatisfiedhelprequest) context.lookup("swim2/SatisfiedhelprequestManager/remote");
 
   	    } catch (NamingException e) {
   	      e.printStackTrace();
@@ -59,8 +63,9 @@ public class ManageHelpRequest extends HttpServlet {
 		}
 		List<Skill> availableSkills = skills.getAllRegSkills();
 		request.setAttribute("availableSkills",  availableSkills);
-		request.getSession().setAttribute("friendsRequests", helprequests.getYourFriendsHelprequests(user));
-		request.getSession().setAttribute("othersRequests", helprequests.getOthersHelprequests(user));		
+		request.setAttribute("friendsRequests", helprequests.getYourFriendsHelprequests(user));
+		request.setAttribute("othersRequests", helprequests.getOthersHelprequests(user));	
+		request.setAttribute("satisfiedrequests", helprequests.getSatisfied(user));		
     	request.getRequestDispatcher("WEB-INF/registered/Gestione Richieste d'aiuto.jsp").forward(request, response);
     	return;
 	}

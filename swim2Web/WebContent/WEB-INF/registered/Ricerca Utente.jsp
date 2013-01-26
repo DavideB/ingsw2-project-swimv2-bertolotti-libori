@@ -19,23 +19,32 @@
 		if (displayRow != -1) {
 			table.deleteRow(displayRow);
 		}
-<<<<<<< HEAD
 		//var target = document.getElementById("target");
 		//target.value = val;
 		displayRow = el.parentNode.parentNode.rowIndex + 1;
 		var row = table.insertRow(el.parentNode.parentNode.rowIndex + 1);
 		row.innerHTML = "<label for=\"message\" value=\"inserisci qui il tuo messaggio\"/><input type=\"text\" name=\"message\"/>"
-				+ "<input type=\"text\" id=\"target\" name=\"target\" value=\""+val+"\"/>"+
+				+ "<input type=\"hidden\" id=\"target\" name=\"target\" value=\""+val+"\"/>"+
 				"<input type=\"submit\" value=\"invia\"/>";
 	}
 </script>
 </head>
 <body>
 	<div class=row-fluid>
+		<div class="span12" id="header">
+			<%@ include file="header.jsp"%>
+		</div>
 		<div class="span8 offset2">
-			<div id="header">
-				<%@ include file="header.jsp"%>
+			<div class="span6" >
+				Benvenuto <%= session.getAttribute("username") %>
 			</div>
+			<div class="span6" >
+				<jsp:include page="profileimage.jsp"/> 
+			</div>
+		</div>
+		<div class="span8 offset2">
+
+
 
 			<div id="main">
 				<div class="row">

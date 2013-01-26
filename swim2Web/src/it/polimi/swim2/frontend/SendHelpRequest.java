@@ -64,16 +64,6 @@ public class SendHelpRequest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		Registered r = (Registered) request.getSession().getAttribute(
 				"userData");
 		// controlla che l'accesso sia stato effettuato
@@ -113,6 +103,15 @@ public class SendHelpRequest extends HttpServlet {
 			response.sendRedirect("error.jsp");
 		}
 		return;
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
