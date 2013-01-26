@@ -32,6 +32,11 @@ public class SkillrequestManager implements StatelessEJBSkillrequest {
 	  return true;
   }
   
+  public int deleteSkillrequest(int req_id) {
+	  Query q = em.createNamedQuery("Newabilityrequest.DeleteById");
+	  q.setParameter("req_id", req_id);
+	  return q.executeUpdate();
+        }
      
   @TransactionAttribute
   public boolean createSkillrequest(int mak_id, String message) {
@@ -57,6 +62,15 @@ public class SkillrequestManager implements StatelessEJBSkillrequest {
 	    ArrayList<Newabilityrequest> toReturn = new ArrayList<Newabilityrequest>();
 	    Query q = em.createNamedQuery("Newabilityrequest.findUnanswered");
 	    q.setParameter("mak_date", mak_date);
+	    for (Object po : q.getResultList()) {
+	      toReturn.add((Newabilityrequest) po);
+	    }
+	    return toReturn;
+	  }
+	
+	public List<Newabilityrequest> getUnansweredSkillrequests() {
+	    ArrayList<Newabilityrequest> toReturn = new ArrayList<Newabilityrequest>();
+	    Query q = em.createNamedQuery("Newabilityrequest.findUnanswered");
 	    for (Object po : q.getResultList()) {
 	      toReturn.add((Newabilityrequest) po);
 	    }

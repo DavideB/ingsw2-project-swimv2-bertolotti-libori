@@ -25,7 +25,8 @@
 			<% } %>
 			<%if ( username != null && email!=null) {
 				if ( isadmin ) { %>
-					<td><a href="WEB-INF/admin/home.jsp">Servizi Admin   </a></td>
+					<td><a href="/swim2Web/services/skillmgmt.jsp">Gestione Abilitá   </a></td>
+					<td><a href="/swim2Web/services/skillrequestmgmt.jsp">Servizi Admin   </a></td>
 				<% }
 				else {%>
 					<td><a href="/swim2Web/services/reg.jsp">Servizi Utenti Registrati   </a></td>

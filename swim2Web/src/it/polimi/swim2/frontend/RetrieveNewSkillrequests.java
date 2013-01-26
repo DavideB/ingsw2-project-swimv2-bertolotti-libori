@@ -91,11 +91,13 @@ public class RetrieveNewSkillrequests extends HttpServlet {
 		  SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 		  Date mak_date = new Date();
 	    	try {mak_date = sdf.parse("01/01/0001");} catch(Exception e) {e.printStackTrace();};
-		    List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getUnansweredSkillrequests(mak_date);
+		    //List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getUnansweredSkillrequests(mak_date);
+	    	List<Newabilityrequest> newabilityrequests = statelessBeanSkillrequest.getUnansweredSkillrequests();
 		    for (Newabilityrequest newabilityrequest : newabilityrequests) {
-		        String[] ability = new String[2];
+		        String[] ability = new String[3];
 		    	ability[0] = (String) statelessBean.getUser(newabilityrequest.getMak_id()).getEmail();
 		    	ability[1] = newabilityrequest.getMessage();
+		    	ability[2] = Integer.toString(newabilityrequest.getId());
 		    	resultlist.add(ability);
 		      	}
 	  }	 

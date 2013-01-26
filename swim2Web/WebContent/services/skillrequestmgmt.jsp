@@ -32,7 +32,7 @@ SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 			<% } %>
 			<%if ( username != null && email!=null) {
 				if ( isadmin ) { %>
-					<td><a href="WEB-INF/admin/home.jsp">Servizi Admin   </a></td>
+					<td><a href="/swim2Web/services/skillmgmt.jsp"> Gestione Abilitá   </a></td>
 				<% }
 				else {%>
 					<td><a href="/swim2Web/services/reg.jsp">Servizi Utenti Registrati   </a></td>
@@ -74,6 +74,8 @@ Premi "Accetta" per registrare la nuova Abilitá o "Rifiuta" per rigettare la ri
 			</td>
 			<td><form action="/swim2Web/skillrejection" method="post">
 			Messaggio di rigetto:<input type="text" name="adminansw" />
+				<input type="hidden" name="email" value="<%=resultlist.get(i)[0]%>" />
+				<input type="hidden" name = "req_id" value="<%=resultlist.get(i)[2]%>" />
 				<input type="submit" value="Rifiuta" />
 				</form>
 			</td>

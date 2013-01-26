@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>swim2Web</display-name>
-  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
@@ -205,7 +204,7 @@
     <servlet-name>ListUsers</servlet-name>
     <url-pattern>/listusers</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>RetrieveHelprequests</display-name>
     <servlet-name>RetrieveHelprequests</servlet-name>
@@ -248,5 +247,68 @@
     <servlet-name>RetrieveUsers</servlet-name>
     <url-pattern>/RetrieveUsers</url-pattern>
     <url-pattern>/retrieveusers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageHelpRequest</display-name>
+    <servlet-name>ManageHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageHelpRequest</servlet-name>
+    <url-pattern>/ManageHelpRequest</url-pattern>
+    <url-pattern>/managehelprequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddSkill</display-name>
+    <servlet-name>AddSkill</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.AddSkill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddSkill</servlet-name>
+    <url-pattern>/AddSkill</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveSkill</display-name>
+    <servlet-name>RemoveSkill</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.RemoveSkill</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveSkill</servlet-name>
+    <url-pattern>/RemoveSkill</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SendHelpRequest</display-name>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SendHelpRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendHelpRequest</servlet-name>
+    <url-pattern>/SendHelpRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ManageNewSkillrequests</display-name>
+    <servlet-name>ManageNewSkillrequests</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.ManageNewSkillrequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageNewSkillrequests</servlet-name>
+    <url-pattern>/ManageNewSkillrequests</url-pattern>
+    <url-pattern>/managenewskillrequests</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SkillRejection</display-name>
+    <servlet-name>SkillRejection</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.SkillRejection</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SkillRejection</servlet-name>
+    <url-pattern>/SkillRejection</url-pattern>
+    <url-pattern>/skillrejection</url-pattern>
   </servlet-mapping>
 </web-app>

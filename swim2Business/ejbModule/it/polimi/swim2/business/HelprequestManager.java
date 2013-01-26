@@ -4,6 +4,7 @@ package it.polimi.swim2.business;
 import it.polimi.swim2.interfaces.StatelessEJBHelprequest;
 
 import it.polimi.swim2.persistence.Helprequest;
+import it.polimi.swim2.persistence.Registered;
 
 import javax.ejb.*;
 import javax.persistence.EntityManager;
@@ -88,4 +89,27 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 	    return toReturn;
 	  } 
 
+  
+  @Override
+  public List<Helprequest> getYourFriendsHelprequests(Registered r) {
+          ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+          Query q = em.createNamedQuery("Helprequest.findYourFriendsRequests")
+                          .setParameter("id", r.getId());
+          for (Object po : q.getResultList()) {
+                  toReturn.add((Helprequest) po);
+          }
+          return toReturn;
+  }
+
+  @Override
+  public List<Helprequest> getOthersHelprequests(Registered r) {
+          ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+          Query q = em.createNamedQuery("Helprequest.findOthersRequests")
+                          .setParameter("id", r.getId());
+          for (Object po : q.getResultList()) {
+                  toReturn.add((Helprequest) po);
+          }
+          return toReturn;
+  }
+  
 }

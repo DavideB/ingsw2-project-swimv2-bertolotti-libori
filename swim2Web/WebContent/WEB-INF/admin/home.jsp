@@ -21,16 +21,16 @@
 					  else { %>: nessun utente <% } %></div>
 	<table> 
 		<tr>	
-			<td><a href="/swim2Web/index.jsp">Home   </a></td>
+			<td><a href="/swim2Web/index.jsp"></a></td>
 			<%if ( username == null && email!=null) {%>
 			<td><a href="/swim2Web/services/nreg.jsp">Servizi Utenti Non Registrati   </a></td>
 			<% } %>
 			<%if ( username != null && email!=null) {
 				if ( isadmin ) { %>
-					<td><a href="WEB-INF/admin/home.jsp">Servizi Admin   </a></td>
+ 					<td><a href="WEB-INF/admin/home.jsp"></a></td>
 				<% }
 				else {%>
-					<td><a href="/swim2Web/services/reg.jsp">Servizi Utenti Registrati   </a></td>
+					<td><a href="/swim2Web/services/reg.jsp"> Servizi Utenti Registrati   </a></td>
 				<% } %>
 			<td><a href="/swim2Web/logout">Logout   </a></td>
 			<% } %>			
@@ -40,16 +40,16 @@
 
 	<h1>Welcome to the SWIMv2 Application</h1>
 	<div>
-		<a href="WEB-INF/admin/skillmgmt.jsp">Gestione Abilitá</a>
+		<a href="ManageSkills"></a>
 	</div>
 	<div>
-		<a href="WEB-INF/admin/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá</a>
+		<a href="ManageNewSkillrequests"></a>
 	</div>
 	<div>
-		<a href="/swim2Web/services/skillmgmt.jsp">Gestione Abilitá in /services/...</a>
+		<a href="/swim2Web/services/skillmgmt.jsp">Gestione Abilitá </a>
 	</div>
 	<div>
-		<a href="/swim2Web/services/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá in /services/...</a>
+		<a href="/swim2Web/services/skillrequestmgmt.jsp">Gestione Richieste Aggiunta Abilitá.</a>
 	</div>
 </body>
 </html>

@@ -31,7 +31,7 @@ SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
 			<% } %>
 			<%if ( username != null && email!=null) {
 				if ( isadmin ) { %>
-					<td><a href="WEB-INF/admin/home.jsp">Servizi Admin   </a></td>
+					<td><a href="/swim2Web/services/skillrequestmgmt.jsp"> Gestione Richieste di Aggiunta Abilitá   </a></td>
 				<% }
 				else {%>
 					<td><a href="/swim2Web/services/reg.jsp">Servizi Utenti Registrati   </a></td>

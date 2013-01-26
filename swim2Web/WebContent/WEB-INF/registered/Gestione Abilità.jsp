@@ -23,19 +23,31 @@
 			
 			<div id="main">
 				    <div class="row">
-		   				<div class="span8">
-		   					<display:table name="availableSkills">
-		   					</display:table>
+		   				<div class="span6">
+		   					<p>Abilità Disponibili</p>
+		   					<display:table name="availableSkills" decorator="it.polimi.swim2.decorators.SkillDecorator">
+			   					<display:column property="name" title="nome"/>
+								<display:column property="addAbilityLink" title=""/>
+							</display:table>
+		   				</div>
+		   				<div class="span6">
+		   					<p>Tue Abilità</p>
+		   					<display:table name="yourSkills" decorator="it.polimi.swim2.decorators.SkillDecorator">
+			   					<display:column sortable="true" property="name" title="nome"/>
+								<display:column property="removeAbilityLink" title=""/>
+							</display:table>
 		   				</div>
 		    		</div>
 		    		<div class="row-fluid">
 					<div class="span8">
-						<form name="modUserData" action="SendNewAbilityRequest" method="post" onsubmit="return checkPwd(this);">
+						<form name="modUserData" action="NewSkillrequest" method="post">
 							<div class="row">
-								<div class="span4">Inserisci il nome della nuova abilità e una breve descrizione dei motivi che ti spingono a richiederla. La richiesta sarà vagliata dall'ammistratore di sistema appena possibile.</div>
-								<div class="span8"><input name="message" type="text"></div>
+								<div class="span4">Inserisci il nome della nuova abilità </div> <!-- e una breve descrizione dei motivi che ti spingono a richiederla. La richiesta sarà vagliata dall'ammistratore di sistema appena possibile.</div> -->
+											<input type="hidden" name="email" value=<%=(String)session.getAttribute("email")%>></div>
+								<div class="span8"><input name="skillrequest" type="text"></div>
 							</div>
 						</form>
+					</div>
 					<div class="span4">
 					<!-- qui verrà visualizzata l'immagine del profilo -->
 						<%@ include file="profileimage.jsp" %>

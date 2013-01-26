@@ -2,6 +2,8 @@ package it.polimi.swim2.business;
 
 import it.polimi.swim2.interfaces.StatelessEJBSkill;
 import it.polimi.swim2.persistence.Registered;
+import it.polimi.swim2.persistence.RegisteredSkill;
+import it.polimi.swim2.persistence.RegisteredSkillPK;
 import it.polimi.swim2.persistence.Skill;
 import it.polimi.swim2.persistence.User;
 
@@ -42,6 +44,34 @@ public class SkillManager implements StatelessEJBSkill {
 	    return toReturn;
     }
 
+    
+    @Override
+    public List<Skill> getAllOtherSkills(Registered r) {
+        ArrayList<Skill> toReturn = new ArrayList<Skill>();
+        Query q = em.createNamedQuery("RegisteredSkill.findOtherSkills");
+        q.setParameter("id", r.getId());
+        for (Object s : q.getResultList()) {
+                toReturn.add((Skill) s);
+            }
+            return toReturn;
+    }
+
+        /**
+     * @see StatelessSkillBean#getUserSkills(String)
+     */
+    @Override
+    public List<Skill> getUserSkills(Registered r) {
+        ArrayList<Skill> toReturn = new ArrayList<Skill>();
+        Query q = em.createNamedQuery("RegisteredSkill.findUserSkills");
+        q.setParameter("id", r.getId());
+       
+        for (Object s : q.getResultList()) {
+                toReturn.add((Skill) s);
+            }
+            return toReturn;
+    }
+
+    
 	/**
      * @see StatelessSkillBean#getUserSkills(String)
      */
@@ -104,5 +134,25 @@ public class SkillManager implements StatelessEJBSkill {
         
         return null;
     }
+    
+    @Override
+    public void linkSkill(Registered r, Skill s) {
+            RegisteredSkill rs = new RegisteredSkill();
+            RegisteredSkillPK pk = new RegisteredSkillPK();
+            pk.setId(r.getId());
+            pk.setSkillId(s.getId());
+            rs.setId(pk);
+            em.persist(rs);
+    }
+   
+    @Override
+    public void unLinkSkill(Registered r, Skill s) {
+            RegisteredSkillPK pk = new RegisteredSkillPK();
+            pk.setId(r.getId());
+            pk.setSkillId(s.getId());
+            em.remove(em.find(RegisteredSkill.class, pk));
+    }
+
+    
 
 }
