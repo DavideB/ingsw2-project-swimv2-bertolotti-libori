@@ -75,6 +75,7 @@ public class ListNewSkillrequests extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		init();
+		request.getSession().setAttribute("error", "");
 		listSkillrequests(response);
 		request.getSession().setAttribute("resultlist", resultlist);
 		request.getSession().setAttribute("out", out);

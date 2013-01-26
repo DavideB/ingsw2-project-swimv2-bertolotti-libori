@@ -19,4 +19,7 @@ public interface StatelessEJBSkill {
 	List<Skill> getUserSkills(Registered r);
 	List<Skill> getAllOtherSkills(Registered r);
 	public List<Skill> getAllRegSkills();
+//	public ArrayList<Skill> getUserSkills(String email);
+	void linkSkill(Registered r, Skill s);
+    void unLinkSkill(Registered r, Skill s);
 }

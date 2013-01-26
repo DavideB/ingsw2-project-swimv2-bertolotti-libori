@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-
 /**
  * The persistent class for the NEWABILITYREQUEST database table.
  * 
@@ -15,8 +14,14 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="Newabilityrequest.findAll",
 	query="SELECT n FROM Newabilityrequest n"),
+	@NamedQuery(name="Newabilityrequest.findByDate",
+	query="SELECT n FROM Newabilityrequest n where n.makdate = :mak_date"),
+	@NamedQuery(name="Newabilityrequest.findUnanswered",
+	query="SELECT DISTINCT n FROM Newabilityrequest n where (n.message not in (SELECT s.name FROM Skill s))"),
 	@NamedQuery(name="Newabilityrequest.findById",
-	query="SELECT n FROM Newabilityrequest n where n.mak_id = :mak_id")
+	query="SELECT n FROM Newabilityrequest n where n.mak_id = :mak_id"),
+	@NamedQuery(name="Newabilityrequest.DeleteById",
+	query="DELETE FROM Newabilityrequest n where n.id = :req_id")
 })
 public class Newabilityrequest implements Serializable {
 	private static final long serialVersionUID = 1L;

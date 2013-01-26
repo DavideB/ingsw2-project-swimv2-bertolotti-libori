@@ -51,6 +51,7 @@ public class ManageFriendship extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		Registered r = (Registered) request.getSession().getAttribute("userData");
 		//controlla che l'accesso sia stato effettuato
 		if (r==null) {
@@ -58,8 +59,10 @@ public class ManageFriendship extends HttpServlet {
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
+
 		request.setAttribute("friends", friendship.getAllFriends(r));
 		request.setAttribute("requests", friendship.getAllRequests(r.getId()));
+		request.getSession().setAttribute("friends", friendship.getAllFriends(r));
 		request.getRequestDispatcher("WEB-INF/registered/Gestione Amicizia.jsp").forward(request, response);
 		return;
 	}
@@ -68,7 +71,7 @@ public class ManageFriendship extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

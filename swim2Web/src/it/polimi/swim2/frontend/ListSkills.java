@@ -1,5 +1,6 @@
 package it.polimi.swim2.frontend;
 
+import it.polimi.swim2.interfaces.StatelessEJB;
 import it.polimi.swim2.interfaces.StatelessEJBSkill;
 import it.polimi.swim2.persistence.Skill;
 
@@ -29,6 +30,7 @@ public class ListSkills extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private StatelessEJBSkill statelessBean;
+	private StatelessEJB statelessBeanUser;
 	private String out = new String();	 
 	ArrayList<String> resultlist = new ArrayList<String>();
 		
@@ -38,6 +40,7 @@ public class ListSkills extends HttpServlet {
 	    	
 	      Context context = new InitialContext();
 	      statelessBean = (StatelessEJBSkill) context.lookup("swim2/SkillManager/remote");
+	      statelessBeanUser = (StatelessEJB) context.lookup("swim2/UserManager/remote");
 	    } catch (NamingException e) {
 	      e.printStackTrace();
 	    }
@@ -53,13 +56,16 @@ public class ListSkills extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	                    throws ServletException, IOException {
 		  init();
+		  request.getSession().setAttribute("error", "");
 		  //request.getSession().setAttribute("resultlist", null);
 		  //displaySkills(response);
 		  listSkills(response);
 //		  request.getSession().setAttribute("resultlist", resultlist);
+		  request.getSession().setAttribute("out", out);
 		  request.getSession().setAttribute("availableSkills", statelessBean.getAllSkills());
 		  //response.sendRedirect(response.encodeRedirectURL("services/nreg.jsp"));
-		  request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
+		  //request.getRequestDispatcher("WEB-INF/admin/skillmgmt.jsp").forward(request, response);
+		  request.getRequestDispatcher("services/list.jsp").forward(request, response);
 	    }
 	  
 	  private void listSkills(HttpServletResponse resp) throws IOException {
@@ -68,9 +74,10 @@ public class ListSkills extends HttpServlet {
 		  List<Skill> skillList = statelessBean.getAllSkills();
 		    for (Skill skill : skillList) {
 		    	out = out + "Skill retrieved:  name= " + skill.getName() 
-			    		  + " Lead_Id= " + skill.getLead_id()
 			    		  + " Skill_Id = " + skill.getId()
-			    		  + " Admin answer = " + skill.getAdminansw();
+			    		  + " Leadname= " + statelessBeanUser.getUser(skill.getLead_id()).getEmail()
+			    		  //+ " Lead_Id= " + statelessBeanUser.getUser(skill.getLead_id())
+			    		  + " Admin answer = " + skill.getAdminansw() + "<br>";
 		      	}
 		  }
 	  

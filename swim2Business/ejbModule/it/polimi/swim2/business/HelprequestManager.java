@@ -105,16 +105,16 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 		return toReturn;
 	}
 
-	@Override
-	public List<Helprequest> getOthersHelprequests(Registered r) {
-		ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
-		Query q = em.createNamedQuery("Helprequest.findOthersRequests")
-				.setParameter("id", r.getId());
-		for (Object po : q.getResultList()) {
-			toReturn.add((Helprequest) po);
-		}
-		return toReturn;
-	}
 
+  @Override
+  public List<Helprequest> getOthersHelprequests(Registered r) {
+          ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+          Query q = em.createNamedQuery("Helprequest.findOthersRequests")
+                          .setParameter("id", r.getId());
+          for (Object po : q.getResultList()) {
+                  toReturn.add((Helprequest) po);
+          }
+          return toReturn;
+  }
 
 }

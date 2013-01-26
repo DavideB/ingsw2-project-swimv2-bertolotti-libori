@@ -67,18 +67,19 @@ public class HelprequestCreation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String username = (String) request.getSession().getAttribute("username");
+		String email = (String) request.getSession().getAttribute("email");
 		//controlla che l'accesso sia stato effettuato
-		if (username==null) {
+		if ( username==null && email==null ) {
 			request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
 			response.sendRedirect("access/home.jsp");
 			return;
 		}
-    	String email = request.getParameter("email");
+		byte isForFriend = Byte.parseByte("0");
+    	//String email = request.getParameter("email");
     	String skillname = request.getParameter("skillname");
     	String descr = request.getParameter("descr");
-    	byte isForFriend = Byte.parseByte("0");
-    	int sen_id = statelessBean.getUser(email).getId();
 
+    	int sen_id = statelessBean.getUser(email).getId();
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
     	Date sentdate = Calendar.getInstance().getTime();
     	
@@ -92,7 +93,7 @@ public class HelprequestCreation extends HttpServlet {
 	    }
 	    
 	    else
-	    	///registrazione utente fallita 
+	    	///registrazione richiesta di aiuto fallita 
 	    	{
 	    	request.getSession().setAttribute("error","Registration failed. Please verify data.\n");
 	    	//response.sendRedirect("error.jsp");

@@ -19,6 +19,7 @@
 		if (displayRow != -1) {
 			table.deleteRow(displayRow);
 		}
+<<<<<<< HEAD
 		//var target = document.getElementById("target");
 		//target.value = val;
 		displayRow = el.parentNode.parentNode.rowIndex + 1;
@@ -26,7 +27,6 @@
 		row.innerHTML = "<label for=\"message\" value=\"inserisci qui il tuo messaggio\"/><input type=\"text\" name=\"message\"/>"
 				+ "<input type=\"text\" id=\"target\" name=\"target\" value=\""+val+"\"/>"+
 				"<input type=\"submit\" value=\"invia\"/>";
-
 	}
 </script>
 </head>
@@ -48,7 +48,6 @@
 								<display:column property="friendshipLink"
 									title="richiesta amicizia" />
 							</display:table>
-							
 						</form>
 					</div>
 				</div>

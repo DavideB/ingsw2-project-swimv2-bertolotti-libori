@@ -78,11 +78,17 @@ public class NewSkillrequest extends HttpServlet {
 
     	SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
     	Date mak_date = Calendar.getInstance().getTime();
+    	//Date mak_date = new Date();
+    	//try {mak_date = sdf.parse("01/01/0001");} catch(Exception e) {e.printStackTrace();};
+    	//Date mak_date=null;
 
 	    if 	//registrazione richiesta di aggiunta skill ok   
 	    	( statelessBeanSkillreq.createSkillrequest(mak_id, mak_date, message) )
-	    {
-	    	request.getRequestDispatcher("WEB-INF/registered/skillmgmt.jsp").forward(request, response);
+	    {    	
+	    	//request.getRequestDispatcher("WEB-INF/registered/skillmgmt.jsp").forward(request, response);
+	    	//request.getRequestDispatcher("WEB-INF/registered/Gestione Abilità.jsp").forward(request, response);
+	    	response.sendRedirect("ManageSkills");
+	    	return;
 	    }
 	    
 	    else
@@ -90,7 +96,8 @@ public class NewSkillrequest extends HttpServlet {
 	    	{
 	    	request.getSession().setAttribute("error","New skill request registration failed. Please verify data.\n");
 	    	//response.sendRedirect("error.jsp");
-	    	response.sendRedirect("WEB-INF/registered/skillmgmt.jsp");
+	    	//response.sendRedirect("WEB-INF/registered/Gestione Abilità.jsp");
+	    	response.sendRedirect("ManageSkills");
 	    	}
 		return;   	
 	}

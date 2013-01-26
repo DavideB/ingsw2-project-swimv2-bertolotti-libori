@@ -32,6 +32,7 @@ public class FriendshipManager implements StatelessFriendshipBean {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	@Override
 	public List<Registered> getAllFriends(Registered r) {
 		Query q = em.createNamedQuery("Friendshiprequest.getFriends1");
@@ -53,6 +54,26 @@ public class FriendshipManager implements StatelessFriendshipBean {
 		}
 		return null;
 	}
+
+//    @Override
+//    public List<Registered> getAllFriends(Registered r) {
+//            Query q = em.createNamedQuery("Friendshiprequest.getRespondents");
+//            Query q1 = em.createNamedQuery("Friendshiprequest.getAskers");
+//            q.setParameter("id", r.getId());
+//            q1.setParameter("id", r.getId());
+//            List tmp = q.getResultList();  
+//            List<Registered> toReturn = new ArrayList<Registered>();
+//            if (tmp != null) tmp.addAll(q1.getResultList());
+//            else tmp = q1.getResultList();
+//        if (tmp != null && !tmp.isEmpty()) {
+//            for (Object s : q.getResultList()) {
+//                    toReturn.add((Registered) s);
+//                }
+//            return toReturn;
+//        }
+//            return null;
+//    }
+
 
 	@Override
 	public void addFriend(int targetId, int myId, String message) throws Exception {
@@ -145,5 +166,6 @@ public class FriendshipManager implements StatelessFriendshipBean {
 		}
 		return toReturn;
 	}
+
 
 }

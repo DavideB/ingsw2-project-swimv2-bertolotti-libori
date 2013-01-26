@@ -60,13 +60,15 @@ public class Login extends HttpServlet {
 		init();
 		String username = (String) request.getParameter("username");
 		String password = (String) request.getParameter("password");
+		request.getSession().setAttribute("isadmin", false);
 		//controlla se è un utente registrato
 		Registered r;
 		if ((r = statelessBean.loginReg(username, password))!=null) {
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("email", username);
-			request.getSession().setAttribute("userData", r);
+			request.getSession().setAttribute("userData", r);			
 			request.getRequestDispatcher("WEB-INF/registered/home.jsp").forward(request, response);
+			//request.getRequestDispatcher("services/reg.jsp").forward(request, response);
 			return;
 		}
 		//controlla se è un admin
@@ -75,6 +77,7 @@ public class Login extends HttpServlet {
 			request.getSession().setAttribute("username", username);
 			request.getSession().setAttribute("email", username);
 			request.getSession().setAttribute("data", r);
+			request.getSession().setAttribute("isadmin", true);
 			request.getRequestDispatcher("WEB-INF/admin/home.jsp").forward(request, response);
 			return;
 		}

@@ -69,13 +69,17 @@ public class ListHelprequests extends HttpServlet {
 	  @Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 	                    throws ServletException, IOException {
+		  init();
+		  request.getSession().setAttribute("error", "");
 		  String username = (String) request.getSession().getAttribute("username");
-			//controlla che l'accesso sia stato effettuato
+		/*	
+		    //controlla che l'accesso sia stato effettuato
 			if (username==null) {
 				request.getSession().setAttribute("error","Devi prima effettuare l'accesso!");
 				response.sendRedirect("access/home.jsp");
 				return;
 			}
+		*/
 		  listHelprequest(response);
 		  request.getSession().setAttribute("out", out);
 		  request.getRequestDispatcher("services/list.jsp").forward(request, response);

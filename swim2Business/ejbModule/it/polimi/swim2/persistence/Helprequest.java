@@ -15,16 +15,29 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="Helprequest.findAll",
 	query="SELECT h FROM Helprequest h"),
+//<<<<<<< HEAD
+//	query="SELECT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr," +
+//			"RegisteredSkill rs where rs.id.id=:id AND rs.id.skillId = s.id AND " +
+//			"h.skillId=s.id AND((fr.ans_id=:id AND fr.sent_id=h.sen_id)" +
+//			"OR (fr.sent_id=:id AND fr.ans_id=h.sen_id))"),
+//	@NamedQuery(name="Helprequest.findOthersRequests",
+//	query="SELECT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr," +
+//			"RegisteredSkill rs where rs.id.id=:id AND rs.id.skillId = s.id AND " +
+//			"h.skillId=s.id AND (( (fr.ans_id<>:id or fr.sent_id<>h.sen_id) and not (fr.ans_id<>:id and fr.sent_id<>h.sen_id))" +
+//			"and ( (fr.sent_id<>r.id or fr.ans_id<>h.sen_id) and not(fr.sent_id<>r.id and fr.ans_id<>h.sen_id)))"),
+//=======
 	@NamedQuery(name="Helprequest.findYourFriendsRequests",
-	query="SELECT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr," +
-			"RegisteredSkill rs where rs.id.id=:id AND rs.id.skillId = s.id AND " +
-			"h.skillId=s.id AND((fr.ans_id=:id AND fr.sent_id=h.sen_id)" +
-			"OR (fr.sent_id=:id AND fr.ans_id=h.sen_id))"),
+	query="SELECT DISTINCT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr," +
+			"RegisteredSkill rs where r.id = :id AND rs.id.id=r.id AND rs.id.skillId = s.id AND " +
+			"h.skillId=s.id AND ((fr.ans_id=r.id AND fr.sent_id=h.sen_id)" +
+			"OR (fr.sent_id=r.id AND fr.ans_id=h.sen_id))" +
+			"AND h.sen_id in (SELECT re.user_id FROM Registered re)"),
 	@NamedQuery(name="Helprequest.findOthersRequests",
-	query="SELECT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr," +
-			"RegisteredSkill rs where rs.id.id=:id AND rs.id.skillId = s.id AND " +
-			"h.skillId=s.id AND (( (fr.ans_id<>:id or fr.sent_id<>h.sen_id) and not (fr.ans_id<>:id and fr.sent_id<>h.sen_id))" +
-			"and ( (fr.sent_id<>r.id or fr.ans_id<>h.sen_id) and not(fr.sent_id<>r.id and fr.ans_id<>h.sen_id)))"),
+	query="SELECT DISTINCT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr, " +
+			"RegisteredSkill rs where r.id = :id AND rs.id.id= r.id AND rs.id.skillId = s.id AND " +
+			"h.skillId=s.id AND NOT ((fr.ans_id=r.id AND fr.sent_id=h.sen_id)" +
+			"OR (fr.sent_id=r.id AND fr.ans_id=h.sen_id))" +
+			"AND h.sen_id in (SELECT re.user_id FROM Registered re)"),
 	@NamedQuery(name="Helprequest.findHelprequestById",
 	query="SELECT h FROM Helprequest h where h.id = :hr_id"),
 	@NamedQuery(name="Helprequest.findHelprequestByUserId",
