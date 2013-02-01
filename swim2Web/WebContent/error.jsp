@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Si è verificato un errore </title>
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
-<body>
-	<%= session.getAttribute("error")  %>
+<body>	<div class=row-fluid>
+		<div class="span8 offset2">
+			<div id="header">
+				<%@ include file="header.jsp" %>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main">
+		<%= session.getAttribute("error")  %>
+	</div>
 </body>
 </html>

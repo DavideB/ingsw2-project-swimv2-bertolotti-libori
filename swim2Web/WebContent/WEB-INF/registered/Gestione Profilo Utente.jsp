@@ -12,10 +12,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script type="text/javascript" language="JavaScript">
 <!--
-	//--------------------------------
-	// This code compares two fields in a form and submit it
-	// if they're the same, or not if they're different.
-	//--------------------------------
+
 	function checkPwd(theForm) {
 		if (theForm.oldPwd.value != theForm.ConfirmOldPwd.value) {
 			alert('Le vecchie password non corrispondono!');

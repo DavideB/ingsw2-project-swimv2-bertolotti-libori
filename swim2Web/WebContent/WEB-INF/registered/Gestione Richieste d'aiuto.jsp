@@ -83,7 +83,7 @@
 					</div>
 					<div class="span6">
 						<p>Altre richieste d'aiuto</p>
-						<display:table id="otherRequests" name="otherRequests"
+						<display:table id="othersRequests" name="otherRequests"
 							decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
 							<display:column property="message" title="nome" />
 							<display:column property="askToOtherLink" title="" />

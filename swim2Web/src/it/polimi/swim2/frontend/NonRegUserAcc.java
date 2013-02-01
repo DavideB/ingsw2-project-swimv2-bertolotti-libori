@@ -5,6 +5,8 @@ import it.polimi.swim2.interfaces.StatelessEJB;
 //import it.polimi.swim2.persistence.Registered;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //import java.io.PrintWriter;
 
 import javax.naming.Context;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NonRegUserAcc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StatelessEJB statelessBean;
+	Pattern p;
 	
 	@Override
 	public String getServletInfo() {
@@ -30,7 +33,7 @@ public class NonRegUserAcc extends HttpServlet {
 	  @Override
 	public void init() throws ServletException {
 	    try {
-	    	
+		  p = Pattern.compile(".+@.+\\.[a-z]+");		
 	      Context context = new InitialContext();
 	      statelessBean = (StatelessEJB) context.lookup("swim2/UserManager/remote");
 	    } catch (NamingException e) {
@@ -60,8 +63,14 @@ public class NonRegUserAcc extends HttpServlet {
 	 */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
     	String email = request.getParameter("email");
+    	//mi assicuro che l'indirizzo e-mail sia effettivamente tale
+    	Matcher m = p.matcher(email);
+    	if (!m.matches()) {
+    		request.getSession().setAttribute("error", "L'indirizzo e-mail inserito non è valido!");
+    		response.sendRedirect("error.jsp");
+    		return;
+    	}
     	String username = (String)request.getSession().getAttribute("username"); 
         String password = (String)request.getSession().getAttribute("password");
     	//PrintWriter writer = response.getWriter();
