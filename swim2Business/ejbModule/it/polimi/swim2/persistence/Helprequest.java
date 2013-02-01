@@ -35,11 +35,11 @@ import java.util.Date;
 				+ "OR (fr.sent_id=:id AND fr.ans_id=h.sen_id AND fr.ansdate is not null))"
 				+ "AND h.sen_id in (SELECT re.user_id FROM Registered re)"),
 		@NamedQuery(name = "Helprequest.findOthersRequests", query = "SELECT DISTINCT h FROM Helprequest h, Registered r, Skill s, Friendshiprequest fr, "
-				+ "RegisteredSkill rs where r.id = :id AND rs.id.id= r.id AND rs.id.skillId = s.id AND "
-				+ "h.skillId=s.id AND NOT ((fr.ans_id=r.id AND fr.sent_id=h.sen_id)"
-				+ "OR (fr.sent_id=r.id AND fr.ans_id=h.sen_id))"
+				+ "RegisteredSkill rs where rs.id.id= :id AND rs.id.skillId = s.id AND "
+				+ "h.skillId=s.id AND NOT ((fr.ans_id=:id AND fr.sent_id=h.sen_id AND fr.ansdate is not null)"
+				+ "OR (fr.sent_id=:id AND fr.ans_id=h.sen_id AND fr.ansdate is not null))"
 				+ "AND h.sen_id in (SELECT re.user_id FROM Registered re)"),
-		@NamedQuery(name = "Helprequest.getSatisfied", query = "SELECT h FROM Helprequest h, Satisfiedhelprequest sh where h.id = sh.reqId and h.sen_id = :id"),
+		@NamedQuery(name = "Helprequest.getSatisfied", query = "SELECT h FROM Helprequest h, Satisfiedhelprequest sh where h.id = sh.reqId and h.sen_id = :id "),
 
 		@NamedQuery(name = "Helprequest.findHelprequestById", query = "SELECT h FROM Helprequest h where h.id = :hr_id"),
 		@NamedQuery(name = "Helprequest.findHelprequestByUserId", query = "SELECT h FROM Helprequest h where h.sen_id = :user_id"),

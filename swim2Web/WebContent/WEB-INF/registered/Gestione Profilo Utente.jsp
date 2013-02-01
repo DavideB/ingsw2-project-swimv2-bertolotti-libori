@@ -60,10 +60,10 @@
 			<div id="main">
 				<div class="row">
 					<div class="span12">
-						<display:table name="userData">
-							<display:column property="name" />
-							<display:column property="surname" />
-							<display:column property="birthdate" />
+						<display:table name="sessionScope.userData">
+							<display:column property="name" title="nome"/>
+							<display:column property="surname" title="cognome"/>
+							<display:column property="birthdate" title="data di nascita"/>
 						</display:table>
 					</div>
 				</div>

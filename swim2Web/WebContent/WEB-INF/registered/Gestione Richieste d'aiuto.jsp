@@ -93,14 +93,15 @@
 				</div>
 				<div class="row">
 					<form name="modUserData" action="SendFeedback" method="post">
-					<div class="span12">
-						<p>Hai ricevuto le seguenti risposte:</p>
-						<display:table id="satisfiedrequests" name="satisfiedrequests"
-							decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
-							<display:column property="message" title="nome" />
-							<display:column property="sendFeedbackLink" title="" />
-						</display:table>
-					</div>
+						<div class="span12">
+							<p>Hai ricevuto le seguenti risposte:</p>
+							<display:table id="satisfiedrequests" name="satisfiedrequests"
+								decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
+								<display:column property="message" title="nome" />
+								<display:column property="sendFeedbackLink" title="" />
+							</display:table>
+						</div>
+					</form>
 				</div>
 				<div class="row-fluid">
 					<div class="span8">
@@ -134,10 +135,6 @@
 								</div>
 							</div>
 						</form>
-					</div>
-					<div class="span4">
-						<!-- qui verrà visualizzata l'immagine del profilo -->
-						<%@ include file="profileimage.jsp"%>
 					</div>
 				</div>
 			</div>

@@ -52,10 +52,6 @@
 				</div>
 
 			</div>
-			<div class="span4">
-				<!-- qui verrà visualizzata l'immagine del profilo -->
-				<%@ include file="profileimage.jsp"%>
-			</div>
 		</div>
 	</div>
 
