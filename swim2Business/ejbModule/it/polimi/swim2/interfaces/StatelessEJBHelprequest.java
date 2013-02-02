@@ -21,4 +21,5 @@ public interface StatelessEJBHelprequest {
 	List<Helprequest> getOthersHelprequests(Registered r);
 	void setAnsDate(int req_id);
 	List<Helprequest> getSatisfied(Registered r);
+	public List<Helprequest> getNonRegRequests(Registered user);
 }

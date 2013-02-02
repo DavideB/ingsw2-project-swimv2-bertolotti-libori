@@ -134,4 +134,15 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 		return toReturn;
 	}
 
+	@Override
+	public List<Helprequest> getNonRegRequests(Registered user) {
+		ArrayList<Helprequest> toReturn = new ArrayList<Helprequest>();
+		Query q = em.createNamedQuery("Helprequest.findNonRegRequests")
+				.setParameter("id", user.getId());
+		for (Object po : q.getResultList()) {
+			toReturn.add((Helprequest) po);
+		}
+		return toReturn;
+	}
+
 }

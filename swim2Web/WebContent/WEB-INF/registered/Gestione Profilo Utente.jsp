@@ -65,8 +65,8 @@
 					</div>
 				</div>
 
-				<div class="row-fluid">
-					<div class="span8 offset2">
+				<div class="row">
+					<div class="span12">
 						
 
 						<form enctype="multipart/form-data" action="UploadImage"

@@ -72,7 +72,7 @@
 
 			<div id="main">
 				<div class="row">
-					<div class="span6">
+					<div class="span4">
 						<p>Richieste d'aiuto dei tuoi amici</p>
 						<form action="AnswerToHelpRequest" method="post">
 							<display:table id="friendsRequests" name="friendsRequests"
@@ -81,12 +81,20 @@
 								<display:column property="askToFriendLink" title="" />
 							</display:table>
 					</div>
-					<div class="span6">
+					<div class="span4">
 						<p>Altre richieste d'aiuto</p>
 						<display:table id="othersRequests" name="otherRequests"
 							decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
 							<display:column property="message" title="nome" />
 							<display:column property="askToOtherLink" title="" />
+						</display:table>
+					</div>
+					<div class="span4">
+						<p>Richieste d'aiuto di utenti non registrati</p>
+						<display:table id="nonRegRequests" name="nonRegRequests"
+							decorator="it.polimi.swim2.decorators.NonRegRequestDecorator">
+							<display:column property="message" title="nome" />
+							<display:column property="responseLink" title="" />
 						</display:table>
 					</div>
 					</form>

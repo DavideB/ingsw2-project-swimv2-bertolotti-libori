@@ -65,7 +65,8 @@ public class ManageHelpRequest extends HttpServlet {
 		request.setAttribute("availableSkills",  availableSkills);
 		request.setAttribute("friendsRequests", helprequests.getYourFriendsHelprequests(user));
 		request.setAttribute("othersRequests", helprequests.getOthersHelprequests(user));	
-		request.setAttribute("satisfiedrequests", helprequests.getSatisfied(user));		
+		request.setAttribute("nonRegRequests", helprequests.getNonRegRequests(user));	
+		request.setAttribute("satisfiedrequests", helprequests.getSatisfied(user));	
     	request.getRequestDispatcher("WEB-INF/registered/Gestione Richieste d'aiuto.jsp").forward(request, response);
     	return;
 	}

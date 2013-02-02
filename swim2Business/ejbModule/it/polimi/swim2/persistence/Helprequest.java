@@ -39,6 +39,8 @@ import java.util.Date;
 				+ "h.skillId=s.id AND h.ansdate is null and h.sen_id <> :id and" 
 				+ "(h.sen_id not in (Select r1.id from Friendshiprequest f1, Registered r1 where r1.id = f1.ans_id and f1.sent_id = :id and f1.ansdate is not null)) and "
 				+ "h.sen_id not in (Select r2.id from Friendshiprequest f2, Registered r2 where f2.sent_id=r2.id and f2.ans_id=:id and f2.ansdate is not null)" ),
+		@NamedQuery(name = "Helprequest.findNonRegRequests", query = "SELECT DISTINCT h FROM Helprequest h, User u, Skill s, Friendshiprequest fr, "
+				+ "RegisteredSkill rs where rs.id.id= :id and rs.id.skillId = h.skillId and h.sen_id = u.id and u.password is null" ),
 		@NamedQuery(name = "Helprequest.getSatisfied", query = "SELECT h FROM Helprequest h, Satisfiedhelprequest sh where h.id = sh.reqId and h.sen_id = :id "),
 
 		@NamedQuery(name = "Helprequest.findHelprequestById", query = "SELECT h FROM Helprequest h where h.id = :hr_id"),
