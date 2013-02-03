@@ -77,7 +77,7 @@
 						<form action="AnswerToHelpRequest" method="post">
 							<display:table id="friendsRequests" name="friendsRequests"
 								decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
-								<display:column property="message" title="nome" />
+								<display:column property="message" title="messaggio" />
 								<display:column property="askToFriendLink" title="" />
 							</display:table>
 					</div>
@@ -85,7 +85,7 @@
 						<p>Altre richieste d'aiuto</p>
 						<display:table id="othersRequests" name="otherRequests"
 							decorator="it.polimi.swim2.decorators.HelpRequestDecorator">
-							<display:column property="message" title="nome" />
+							<display:column property="message" title="messaggio" />
 							<display:column property="askToOtherLink" title="" />
 						</display:table>
 					</div>
@@ -93,7 +93,7 @@
 						<p>Richieste d'aiuto di utenti non registrati</p>
 						<display:table id="nonRegRequests" name="nonRegRequests"
 							decorator="it.polimi.swim2.decorators.NonRegRequestDecorator">
-							<display:column property="message" title="nome" />
+							<display:column property="message" title="messaggio" />
 							<display:column property="responseLink" title="" />
 						</display:table>
 					</div>

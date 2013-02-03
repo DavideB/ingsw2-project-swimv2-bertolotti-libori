@@ -22,4 +22,5 @@ public interface StatelessEJBHelprequest {
 	void setAnsDate(int req_id);
 	List<Helprequest> getSatisfied(Registered r);
 	public List<Helprequest> getNonRegRequests(Registered user);
+	public void delete(int id);
 }

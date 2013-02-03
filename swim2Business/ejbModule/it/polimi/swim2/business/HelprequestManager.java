@@ -145,4 +145,10 @@ public class HelprequestManager implements StatelessEJBHelprequest {
 		return toReturn;
 	}
 
+	@Override
+	public void delete(int id) {
+		em.remove(em.find(Helprequest.class, id));
+	}
+	
+
 }

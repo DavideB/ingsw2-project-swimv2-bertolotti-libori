@@ -328,4 +328,14 @@
     <servlet-name>SendFeedback</servlet-name>
     <url-pattern>/SendFeedback</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NonRegReqDelete</display-name>
+    <servlet-name>NonRegReqDelete</servlet-name>
+    <servlet-class>it.polimi.swim2.frontend.NonRegReqDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NonRegReqDelete</servlet-name>
+    <url-pattern>/NonRegReqDelete</url-pattern>
+  </servlet-mapping>
 </web-app>
